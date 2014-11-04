@@ -141,8 +141,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>181</xloc>
-      <yloc>183</yloc>
+      <xloc>242</xloc>
+      <yloc>190</yloc>
       </entry>
     <entry>
       <name>Clear Previously Run Data</name>
@@ -205,14 +205,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>342</xloc>
-      <yloc>186</yloc>
+      <xloc>375</xloc>
+      <yloc>191</yloc>
       </entry>
     <entry>
       <name>SQL</name>
       <description/>
       <type>SQL</type>
-      <sql>ALTER TABLE &#x60;m_client&#x60;&#xd;&#xa;	DROP INDEX &#x60;mobile_no_UNIQUE&#x60;&#x3b;</sql>
+      <sql>ALTER TABLE &#x60;m_client&#x60;&#xd;&#xa;	DROP INDEX &#x60;mobile_no_UNIQUE&#x60;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE &#x60;m_group&#x60;&#xd;&#xa;	DROP INDEX &#x60;name&#x60;,&#xd;&#xa;	ADD UNIQUE INDEX &#x60;name&#x60; &#x28;&#x60;level_id&#x60;&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -221,8 +221,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>110</xloc>
-      <yloc>165</yloc>
+      <xloc>106</xloc>
+      <yloc>178</yloc>
       </entry>
   </entries>
   <hops>
