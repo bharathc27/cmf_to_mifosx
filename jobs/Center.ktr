@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Clients</name>
+    <name>Center</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,9 +66,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2014&#x2f;10&#x2f;30 16&#x3a;06&#x3a;27.279</created_date>
+  <created_date>2014&#x2f;11&#x2f;05 17&#x3a;09&#x3a;27.039</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2014&#x2f;10&#x2f;30 16&#x3a;06&#x3a;27.279</modified_date>
+  <modified_date>2014&#x2f;11&#x2f;05 17&#x3a;09&#x3a;27.039</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -124,11 +124,12 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Client Input</from><to>Database lookup</to><enabled>Y</enabled> </hop>
-  <hop> <from>Database lookup</from><to>Client output</to><enabled>Y</enabled> </hop>
+  <hop> <from>Center Input</from><to>Database lookup</to><enabled>Y</enabled> </hop>
+  <hop> <from>Database lookup</from><to>Database lookup 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Database lookup 2</from><to>Table output</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Client Input</name>
+    <name>Center Input</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -139,7 +140,7 @@
            <schema_name/>
            </partitioning>
     <connection>SourceDB</connection>
-    <sql>SELECT concat&#x28;t.unit_code,t.CLIENT_CODE&#x29; as accountno&#xd;&#xa;,concat&#x28;t.unit_code,t.CLIENT_CODE&#x29; as external_id&#xd;&#xa;,300 as status_enum&#xd;&#xa;,to_char&#x28;t.CRTD_DT,&#x27;YYYY-MM-DD&#x27;&#x29; as activation_date&#xd;&#xa;,to_char&#x28;t.CRTD_DT,&#x27;YYYY-MM-DD&#x27;&#x29; as office_joining_date&#xd;&#xa;,t.UNIT_CODE as office_id&#xd;&#xa;,trim&#x28;t.CLIENT_NAME&#x29; as firstname&#xd;&#xa;,trim&#x28;t.CLIENT_NAME&#x29; as display_name&#xd;&#xa;,trim&#x28;t.SURNAME&#x29; as lastname&#xd;&#xa;,t.PHONE_NOS as mobile_no&#xd;&#xa;&#xd;&#xa;,case t.GENDER&#xd;&#xa;  when &#x27;F&#x27; then &#x27;Female&#x27;&#xd;&#xa;  when &#x27;M&#x27; then &#x27;Male&#x27; end as gender&#xd;&#xa;,to_char&#x28;t.DOB,&#x27;YYYY-MM-DD&#x27;&#x29; as date_of_birth&#xd;&#xa;,to_char&#x28;t.CRTD_DT,&#x27;YYYY-MM-DD&#x27;&#x29; as submittedon_date&#xd;&#xa;,1 as submittedon_userid&#xd;&#xa;,1 as activatedon_userid&#xd;&#xa;&#xd;&#xa;FROM BO586_CUSTOMER_MST t</sql>
+    <sql>select &#xd;&#xa;concat &#x28;v.unit_code, concat &#x28;&#x27;-&#x27;,v.village_code&#x29;&#x29; as external_id&#xd;&#xa;,v.CRTD_DT as activation_date&#xd;&#xa;,v.unit_code as office_code&#xd;&#xa;,concat &#x28;v.unit_code, concat &#x28;&#x27;-&#x27;,v.csa_code&#x29;&#x29; as staff_code&#xd;&#xa;,1 as level_id&#xd;&#xa;,vm.VILLAGE_DESC as display_name&#xd;&#xa;,1 as activatedon_userid&#xd;&#xa;,v.CRTD_DT as submitedon_date&#xd;&#xa;,1 as submitedon_userid&#xd;&#xa;from BO117_VILLAGE_LINK v&#xd;&#xa;inner join BO130_VILLAGE_MST vm on vm.UNIT_CODE&#x3d;v.UNIT_CODE and vm.VILLAGE_CODE&#x3d;v.VILLAGE_CODE&#xd;&#xa;inner join NANO_COM.CM010_EMP_MST e on e.UNIT_CODE&#x3d;v.UNIT_CODE and e.EMPL_CODE&#x3d;v.CSA_CODE&#xd;&#xa;where v.ID_NO in &#x28;SELECT  MAX &#x28;id_no&#x29; AS idno&#xd;&#xa;              	FROM bo117_village_link&#xd;&#xa;         GROUP BY unit_code, village_code&#x29;&#xd;&#xa;         and v.stop_date is null</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -147,14 +148,98 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>127</xloc>
-      <yloc>213</yloc>
+      <xloc>125</xloc>
+      <yloc>222</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Client output</name>
+    <name>Database lookup</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>m_staff</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>STAFF_CODE</name>
+        <field>external_id</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id</name>
+        <rename>staff_id</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>246</xloc>
+      <yloc>134</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Database lookup 2</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>m_office</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>OFFICE_CODE</name>
+        <field>external_id</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id</name>
+        <rename>office_id</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>432</xloc>
+      <yloc>135</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table output</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -166,7 +251,7 @@
            </partitioning>
     <connection>DestinationDB</connection>
     <schema/>
-    <table>m_client</table>
+    <table>m_group</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
@@ -183,108 +268,46 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>account_no</column_name>
-          <stream_name>ACCOUNTNO</stream_name>
-        </field>
-        <field>
           <column_name>external_id</column_name>
           <stream_name>EXTERNAL_ID</stream_name>
-        </field>
-        <field>
-          <column_name>status_enum</column_name>
-          <stream_name>STATUS_ENUM</stream_name>
         </field>
         <field>
           <column_name>activation_date</column_name>
           <stream_name>ACTIVATION_DATE</stream_name>
         </field>
         <field>
-          <column_name>office_joining_date</column_name>
-          <stream_name>OFFICE_JOINING_DATE</stream_name>
-        </field>
-        <field>
-          <column_name>office_id</column_name>
-          <stream_name>OFFICE_ID</stream_name>
+          <column_name>level_id</column_name>
+          <stream_name>LEVEL_ID</stream_name>
         </field>
         <field>
           <column_name>display_name</column_name>
           <stream_name>DISPLAY_NAME</stream_name>
         </field>
         <field>
-          <column_name>lastname</column_name>
-          <stream_name>LASTNAME</stream_name>
-        </field>
-        <field>
-          <column_name>mobile_no</column_name>
-          <stream_name>MOBILE_NO</stream_name>
-        </field>
-        <field>
-          <column_name>date_of_birth</column_name>
-          <stream_name>DATE_OF_BIRTH</stream_name>
-        </field>
-        <field>
-          <column_name>submittedon_date</column_name>
-          <stream_name>SUBMITTEDON_DATE</stream_name>
-        </field>
-        <field>
-          <column_name>submittedon_userid</column_name>
-          <stream_name>SUBMITTEDON_USERID</stream_name>
-        </field>
-        <field>
           <column_name>activatedon_userid</column_name>
           <stream_name>ACTIVATEDON_USERID</stream_name>
         </field>
         <field>
-          <column_name>gender_cv_id</column_name>
-          <stream_name>gender_cv_id</stream_name>
+          <column_name>staff_id</column_name>
+          <stream_name>staff_id</stream_name>
+        </field>
+        <field>
+          <column_name>office_id</column_name>
+          <stream_name>office_id</stream_name>
+        </field>
+        <field>
+          <column_name>submittedon_date</column_name>
+          <stream_name>SUBMITEDON_DATE</stream_name>
+        </field>
+        <field>
+          <column_name>submittedon_userid</column_name>
+          <stream_name>SUBMITEDON_USERID</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>441</xloc>
-      <yloc>213</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Database lookup</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>m_code_value</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>GENDER</name>
-        <field>code_value</field>
-        <condition>&#x3d;</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>id</name>
-        <rename>gender_cv_id</rename>
-        <default/>
-        <type>Number</type>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>308</xloc>
-      <yloc>93</yloc>
+      <xloc>631</xloc>
+      <yloc>233</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

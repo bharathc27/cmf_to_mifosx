@@ -74,11 +74,11 @@
       <minutes>0</minutes>
       <weekDay>1</weekDay>
       <DayOfMonth>1</DayOfMonth>
-      <parallel>N</parallel>
+      <parallel>Y</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>8</xloc>
-      <yloc>184</yloc>
+      <xloc>12</xloc>
+      <yloc>188</yloc>
       </entry>
     <entry>
       <name>Configurations</name>
@@ -109,8 +109,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>260</xloc>
-      <yloc>48</yloc>
+      <xloc>281</xloc>
+      <yloc>14</yloc>
       </entry>
     <entry>
       <name>Organisation</name>
@@ -138,11 +138,11 @@
       <force_separate_logging>N</force_separate_logging>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
+      <parallel>Y</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>242</xloc>
-      <yloc>190</yloc>
+      <xloc>276</xloc>
+      <yloc>115</yloc>
       </entry>
     <entry>
       <name>Clear Previously Run Data</name>
@@ -173,8 +173,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>105</xloc>
-      <yloc>51</yloc>
+      <xloc>153</xloc>
+      <yloc>14</yloc>
       </entry>
     <entry>
       <name>Clients and Details</name>
@@ -205,14 +205,14 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>375</xloc>
-      <yloc>191</yloc>
+      <xloc>400</xloc>
+      <yloc>15</yloc>
       </entry>
     <entry>
-      <name>SQL</name>
+      <name>Drop Index Client</name>
       <description/>
       <type>SQL</type>
-      <sql>ALTER TABLE &#x60;m_client&#x60;&#xd;&#xa;	DROP INDEX &#x60;mobile_no_UNIQUE&#x60;&#x3b;&#xd;&#xa;&#xd;&#xa;ALTER TABLE &#x60;m_group&#x60;&#xd;&#xa;	DROP INDEX &#x60;name&#x60;,&#xd;&#xa;	ADD UNIQUE INDEX &#x60;name&#x60; &#x28;&#x60;level_id&#x60;&#x29;&#x3b;</sql>
+      <sql>ALTER TABLE &#x60;m_client&#x60;&#xd;&#xa;	DROP INDEX &#x60;mobile_no_UNIQUE&#x60;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -221,8 +221,72 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>106</xloc>
-      <yloc>178</yloc>
+      <xloc>149</xloc>
+      <yloc>185</yloc>
+      </entry>
+    <entry>
+      <name>Center and Groups</name>
+      <description/>
+      <type>JOB</type>
+      <specification_method>filename</specification_method>
+      <job_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Centers and Details.kjb</filename>
+      <jobname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <force_separate_logging>N</force_separate_logging>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>401</xloc>
+      <yloc>116</yloc>
+      </entry>
+    <entry>
+      <name>Drop Index staff</name>
+      <description/>
+      <type>SQL</type>
+      <sql>ALTER TABLE &#x60;m_staff&#x60;&#xd;&#xa;	DROP INDEX &#x60;display_name&#x60;,&#xd;&#xa;	DROP INDEX &#x60;mobile_no_UNIQUE&#x60;&#x3b;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>DestinationDB</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>149</xloc>
+      <yloc>274</yloc>
+      </entry>
+    <entry>
+      <name>Drop Index Group</name>
+      <description/>
+      <type>SQL</type>
+      <sql>ALTER TABLE &#x60;m_group&#x60;&#xd;&#xa;	DROP INDEX &#x60;name&#x60;&#x3b;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>DestinationDB</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>153</xloc>
+      <yloc>110</yloc>
       </entry>
   </entries>
   <hops>
@@ -255,7 +319,7 @@
     </hop>
     <hop>
       <from>START</from>
-      <to>SQL</to>
+      <to>Drop Index Client</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -263,13 +327,40 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>SQL</from>
-      <to>Clear Previously Run Data</to>
+      <from>Organisation</from>
+      <to>Center and Groups</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Drop Index staff</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Drop Index Group</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Drop Index Group</from>
+      <to>Clear Previously Run Data</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
