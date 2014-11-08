@@ -75,7 +75,7 @@
   <connection>
     <name>DestinationDB</name>
     <server/>
-    <type>ORACLE</type>
+    <type>MYSQL</type>
     <access>JNDI</access>
     <database>DestinationDB</database>
     <port>1521</port>
@@ -91,6 +91,7 @@
       <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
       <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -175,10 +176,6 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>name</column_name>
-          <stream_name>Account Name</stream_name>
-        </field>
-        <field>
           <column_name>classification_enum</column_name>
           <stream_name>AccType</stream_name>
         </field>
@@ -203,8 +200,8 @@
           <stream_name>AccountCode</stream_name>
         </field>
         <field>
-          <column_name>description</column_name>
-          <stream_name>Description</stream_name>
+          <column_name>name</column_name>
+          <stream_name>Acount Name</stream_name>
         </field>
     </fields>
      <cluster_schema/>
@@ -242,7 +239,7 @@
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>C&#x3a;&#x5c;cmfMigration&#x5c;cmf_to_mifosx&#x5c;Docs&#x5c;CoA.xls</name>
+      <name>C&#x3a;&#x5c;cmf_to_mifosx&#x5c;Docs&#x5c;CoA.xls</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -250,7 +247,7 @@
     </file>
     <fields>
       <field>
-        <name>Account Name</name>
+        <name>Acount Name</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
@@ -324,18 +321,6 @@
       <field>
         <name>AccountUsage</name>
         <type>Number</type>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-      </field>
-      <field>
-        <name>Description</name>
-        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
