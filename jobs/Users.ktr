@@ -138,7 +138,7 @@
            <schema_name/>
            </partitioning>
     <connection>NanoADM</connection>
-    <sql>SELECT &#xd;&#xa;case &#xd;&#xa;when u.DELTD_USER is null then 1&#xd;&#xa;else 0 end as is_deleted&#xd;&#xa;,1 as office_id&#xd;&#xa;,u.USER_NAME as username&#xd;&#xa;,u.USER_CODE as firstname&#xd;&#xa;,&#x27;Replace&#x27; as password&#xd;&#xa;,u.EMP_MAILID as email&#xd;&#xa;,0 as firsttime_login_remaining&#xd;&#xa;,case when u.USER_EXP &#x3d; &#x27;N&#x27; then 1 else 0 end as nonexpired&#xd;&#xa;,1 as nonloked&#xd;&#xa;,1 as nonexpired_credentials&#xd;&#xa;,case when u.STATUS&#x3d;&#x27;A&#x27; then 1 else 0 end as enabled&#xd;&#xa;,u.CRTD_DATE as last_time_password_updated&#xd;&#xa;FROM CM_USER_DEFINITION u</sql>
+    <sql>SELECT &#xd;&#xa;case &#xd;&#xa;when u.DELTD_USER is null then 0&#xd;&#xa;else 1 end as is_deleted&#xd;&#xa;,1 as office_id&#xd;&#xa;,u.USER_NAME as username&#xd;&#xa;,u.USER_CODE as firstname&#xd;&#xa;,&#x27;Replace&#x27; as password&#xd;&#xa;,u.EMP_MAILID as email&#xd;&#xa;,0 as firsttime_login_remaining&#xd;&#xa;,case when u.USER_EXP &#x3d; &#x27;N&#x27; then 1 else 0 end as nonexpired&#xd;&#xa;,1 as nonloked&#xd;&#xa;,1 as nonexpired_credentials&#xd;&#xa;,case when u.STATUS&#x3d;&#x27;A&#x27; then 1 else 0 end as enabled&#xd;&#xa;,u.CRTD_DATE as last_time_password_updated&#xd;&#xa;FROM CM_USER_DEFINITION u</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
