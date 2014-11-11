@@ -320,6 +320,22 @@
       <xloc>276</xloc>
       <yloc>188</yloc>
       </entry>
+    <entry>
+      <name>Drop Index App User</name>
+      <description/>
+      <type>SQL</type>
+      <sql>&#xd;&#xa;ALTER TABLE &#x60;m_appuser&#x60; auto_increment&#x3d;2&#x3b;&#xd;&#xa;ALTER TABLE &#x60;m_appuser&#x60;&#xd;&#xa;	ALTER &#x60;lastname&#x60; DROP DEFAULT&#x3b;&#xd;&#xa;ALTER TABLE &#x60;m_appuser&#x60;&#xd;&#xa;	CHANGE COLUMN &#x60;lastname&#x60; &#x60;lastname&#x60; VARCHAR&#x28;100&#x29; NULL AFTER &#x60;firstname&#x60;&#x3b;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>DestinationDB</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>152</xloc>
+      <yloc>362</yloc>
+      </entry>
   </entries>
   <hops>
     <hop>
@@ -388,6 +404,15 @@
     <hop>
       <from>Drop Index Group</from>
       <to>Clear Previously Run Data</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Drop Index App User</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
