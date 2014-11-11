@@ -35,7 +35,6 @@ TRUNCATE m_note;
 TRUNCATE `acc_gl_journal_entry`;
 TRUNCATE `acc_gl_account`;
 TRUNCATE `acc_gl_account`;
-TRUNCATE `m_organisation_currency`;
 TRUNCATE `m_meeting`;
 TRUNCATE `m_client_attendance`;
 DELETE FROM m_role_permission where role_id <>1;
