@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Office</name>
+    <name>Office New</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,9 +66,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2014&#x2f;10&#x2f;22 10&#x3a;40&#x3a;24.625</created_date>
+  <created_date>2014&#x2f;11&#x2f;12 17&#x3a;54&#x3a;02.479</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2014&#x2f;10&#x2f;22 10&#x3a;40&#x3a;24.625</modified_date>
+  <modified_date>2014&#x2f;11&#x2f;12 17&#x3a;54&#x3a;02.479</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -85,6 +85,8 @@
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -97,32 +99,8 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>SouceDB1</name>
-    <server/>
-    <type>ORACLE</type>
-    <access>JNDI</access>
-    <database>SourceDB1</database>
-    <port>1521</port>
-    <username/>
-    <password>Encrypted </password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
-      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
-  <hop> <from>Table input</from><to>Table output</to><enabled>Y</enabled> </hop>
+  <hop> <from>Microsoft Excel Input</from><to>Insert &#x2f; Update</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Execute SQL script</name>
@@ -140,7 +118,7 @@
     <single_statement>N</single_statement>
     <replace_variables>N</replace_variables>
     <quoteString>N</quoteString>
-    <sql>update m_office set external_id&#x3d;&#x27;001&#x27; where id&#x3d;1&#x3b;</sql>
+    <sql>update m_office set external_id&#x3d;&#x27;001&#x27;,opening_date&#x3d;&#x27;2009-04-01&#x27; where id&#x3d;1&#x3b;</sql>
     <set_params>N</set_params>
     <insert_field/>
     <update_field/>
@@ -150,41 +128,15 @@
     </arguments>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>83</xloc>
-      <yloc>190</yloc>
+      <xloc>149</xloc>
+      <yloc>194</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Table input</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>SouceDB1</connection>
-    <sql>SELECT unit_code as id,&#xd;&#xa;&#x27;1&#x27; as parent_id,&#xd;&#xa;&#xd;&#xa;CONCAT &#x28;&#x27;.&#x27;, CONCAT &#x28; replace&#x28;unit_code,0,&#x27;&#x27;&#x29;, &#x27;.&#x27;&#x29;&#x29; as hierarchy,&#xd;&#xa;unit_code as external_id , &#xd;&#xa;unit_name as name,&#xd;&#xa;&#x27;2009-01-01&#x27; as opening_date&#xd;&#xa;  FROM unit_mst&#xd;&#xa;where unit_name &#x3c;&#x3e; &#x27;HEAD OFFICE&#x27;&#xd;&#xa;order by unit_code</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>116</xloc>
-      <yloc>30</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Table output</name>
-    <type>TableOutput</type>
+    <name>Insert &#x2f; Update</name>
+    <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -194,52 +146,192 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <schema/>
-    <table>m_office</table>
-    <commit>1000</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>ID</column_name>
-          <stream_name>ID</stream_name>
-        </field>
-        <field>
-          <column_name>PARENT_ID</column_name>
-          <stream_name>PARENT_ID</stream_name>
-        </field>
-        <field>
-          <column_name>HIERARCHY</column_name>
-          <stream_name>HIERARCHY</stream_name>
-        </field>
-        <field>
-          <column_name>EXTERNAL_ID</column_name>
-          <stream_name>EXTERNAL_ID</stream_name>
-        </field>
-        <field>
-          <column_name>NAME</column_name>
-          <stream_name>NAME</stream_name>
-        </field>
-        <field>
-          <column_name>OPENING_DATE</column_name>
-          <stream_name>OPENING_DATE</stream_name>
-        </field>
-    </fields>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema/>
+      <table>m_office</table>
+      <key>
+        <name>ID</name>
+        <field>id</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>parent_id</name>
+        <rename>parent_id</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>hierarchy</name>
+        <rename>hierarchy</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>external_id</name>
+        <rename>external_id</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>name</name>
+        <rename>name</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>opening_date</name>
+        <rename>opening_date</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>id</name>
+        <rename>id</rename>
+        <update>N</update>
+      </value>
+    </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>285</xloc>
-      <yloc>24</yloc>
+      <xloc>481</xloc>
+      <yloc>210</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Microsoft Excel Input</name>
+    <type>ExcelInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <header>Y</header>
+    <noempty>Y</noempty>
+    <stoponempty>N</stoponempty>
+    <filefield/>
+    <sheetfield/>
+    <sheetrownumfield/>
+    <rownumfield/>
+    <sheetfield/>
+    <filefield/>
+    <limit>0</limit>
+    <encoding/>
+    <add_to_result_filenames>Y</add_to_result_filenames>
+    <accept_filenames>N</accept_filenames>
+    <accept_field/>
+    <accept_stepname/>
+    <file>
+      <name>C&#x3a;&#x5c;cmf_to_mifosx&#x5c;Docs&#x5c;Office.XLS</name>
+      <filemask/>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
+    <fields>
+      <field>
+        <name>id</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>parent_id</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>hierarchy</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>external_id</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>name</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+      <field>
+        <name>opening_date</name>
+        <type>Date</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+      </field>
+    </fields>
+    <sheets>
+      <sheet>
+        <name>Office</name>
+        <startrow>0</startrow>
+        <startcol>0</startcol>
+        </sheet>
+    </sheets>
+    <strict_types>N</strict_types>
+    <error_ignored>N</error_ignored>
+    <error_line_skipped>N</error_line_skipped>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <shortFileFieldName/>
+    <pathFieldName/>
+    <hiddenFieldName/>
+    <lastModificationTimeFieldName/>
+    <uriNameFieldName/>
+    <rootUriNameFieldName/>
+    <extensionFieldName/>
+    <sizeFieldName/>
+    <spreadsheet_type>JXL</spreadsheet_type>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>283</xloc>
+      <yloc>209</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

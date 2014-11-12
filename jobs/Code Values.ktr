@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Office</name>
+    <name>Code Values</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,9 +66,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2014&#x2f;10&#x2f;22 10&#x3a;40&#x3a;24.625</created_date>
+  <created_date>2014&#x2f;11&#x2f;12 15&#x3a;56&#x3a;11.916</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2014&#x2f;10&#x2f;22 10&#x3a;40&#x3a;24.625</modified_date>
+  <modified_date>2014&#x2f;11&#x2f;12 15&#x3a;56&#x3a;11.916</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -85,6 +85,8 @@
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -98,7 +100,7 @@
     </attributes>
   </connection>
   <connection>
-    <name>SouceDB1</name>
+    <name>SourceDB1</name>
     <server/>
     <type>ORACLE</type>
     <access>JNDI</access>
@@ -122,11 +124,12 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Table input</from><to>Table output</to><enabled>Y</enabled> </hop>
+  <hop> <from>Table input</from><to>Database lookup</to><enabled>Y</enabled> </hop>
+  <hop> <from>Database lookup</from><to>Table output</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Execute SQL script</name>
-    <type>ExecSQL</type>
+    <name>Database lookup</name>
+    <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -136,22 +139,32 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>update m_office set external_id&#x3d;&#x27;001&#x27; where id&#x3d;1&#x3b;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>m_code</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>CODE_NAME</name>
+        <field>code_name</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id</name>
+        <rename>code_id</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>83</xloc>
-      <yloc>190</yloc>
+      <xloc>402</xloc>
+      <yloc>82</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -160,15 +173,15 @@
     <name>Table input</name>
     <type>TableInput</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>SouceDB1</connection>
-    <sql>SELECT unit_code as id,&#xd;&#xa;&#x27;1&#x27; as parent_id,&#xd;&#xa;&#xd;&#xa;CONCAT &#x28;&#x27;.&#x27;, CONCAT &#x28; replace&#x28;unit_code,0,&#x27;&#x27;&#x29;, &#x27;.&#x27;&#x29;&#x29; as hierarchy,&#xd;&#xa;unit_code as external_id , &#xd;&#xa;unit_name as name,&#xd;&#xa;&#x27;2009-01-01&#x27; as opening_date&#xd;&#xa;  FROM unit_mst&#xd;&#xa;where unit_name &#x3c;&#x3e; &#x27;HEAD OFFICE&#x27;&#xd;&#xa;order by unit_code</sql>
+    <connection>SourceDB1</connection>
+    <sql>&#x2f;&#x2a;select &#xd;&#xa;c.SIMPTAB_DESC code_name&#xd;&#xa;,d.SIMPTABCOL_DESC code_value&#xd;&#xa;, row_number&#x28;&#x29; OVER &#x28;PARTITION BY c.simptab_desc ORDER BY c.simptab_desc&#x29; order_position&#xd;&#xa;from BO101_SIMPTAB_HDR c&#xd;&#xa;inner join BO102_SIMPTAB_DTL d on d.SIMP_TAB &#x3d; c.SIMP_TAB&#xd;&#xa;where c.SIMP_TAB not in &#x28; &#x27;BO0107&#x27;,&#x27;BO0125&#x27;&#x29;&#x2a;&#x2f;&#xd;&#xa;&#xd;&#xa;select a.&#x2a;&#xd;&#xa;, row_number&#x28;&#x29; OVER &#x28;PARTITION BY a.code_name ORDER BY a.code_name&#x29; order_position &#xd;&#xa;from &#x28;select DISTINCT&#xd;&#xa;c.SIMPTAB_DESC code_name&#xd;&#xa;,d.SIMPTABCOL_DESC code_value&#xd;&#xa;from BO101_SIMPTAB_HDR c&#xd;&#xa;inner join BO102_SIMPTAB_DTL d on d.SIMP_TAB &#x3d; c.SIMP_TAB&#xd;&#xa;where c.SIMP_TAB not in &#x28; &#x27;BO0107&#x27;,&#x27;BO0125&#x27;&#x29;&#x29; a</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -176,8 +189,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>116</xloc>
-      <yloc>30</yloc>
+      <xloc>141</xloc>
+      <yloc>183</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -195,7 +208,7 @@
            </partitioning>
     <connection>DestinationDB</connection>
     <schema/>
-    <table>m_office</table>
+    <table>m_code_value</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
@@ -212,34 +225,22 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>ID</column_name>
-          <stream_name>ID</stream_name>
+          <column_name>code_value</column_name>
+          <stream_name>CODE_VALUE</stream_name>
         </field>
         <field>
-          <column_name>PARENT_ID</column_name>
-          <stream_name>PARENT_ID</stream_name>
+          <column_name>order_position</column_name>
+          <stream_name>ORDER_POSITION</stream_name>
         </field>
         <field>
-          <column_name>HIERARCHY</column_name>
-          <stream_name>HIERARCHY</stream_name>
-        </field>
-        <field>
-          <column_name>EXTERNAL_ID</column_name>
-          <stream_name>EXTERNAL_ID</stream_name>
-        </field>
-        <field>
-          <column_name>NAME</column_name>
-          <stream_name>NAME</stream_name>
-        </field>
-        <field>
-          <column_name>OPENING_DATE</column_name>
-          <stream_name>OPENING_DATE</stream_name>
+          <column_name>code_id</column_name>
+          <stream_name>code_id</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>285</xloc>
-      <yloc>24</yloc>
+      <xloc>655</xloc>
+      <yloc>178</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

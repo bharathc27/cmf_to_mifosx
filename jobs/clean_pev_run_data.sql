@@ -29,6 +29,8 @@ TRUNCATE `m_interest_rate_slab`;
 TRUNCATE m_loan_repayment_schedule;
 TRUNCATE m_loan_repayment_schedule_history;
 TRUNCATE m_loan_transaction;
+DELETE FROM m_code where is_system_defined=0;
+ALTER TABLE m_code AUTO_INCREMENT=18;
 DELETE FROM m_code_value WHERE id>9;
 ALTER TABLE m_code_value AUTO_INCREMENT=9;
 TRUNCATE m_note;
