@@ -147,35 +147,37 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>SourceDB1</name>
-    <server/>
-    <type>ORACLE</type>
-    <access>JNDI</access>
-    <database>SourceDB1</database>
-    <port>1521</port>
-    <username/>
-    <password>Encrypted </password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
-      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
   <hop> <from>Derived Table</from><to>Merge Join</to><enabled>Y</enabled> </hop>
   <hop> <from>Staff Table</from><to>Merge Join</to><enabled>Y</enabled> </hop>
   <hop> <from>Merge Join</from><to>Staff output</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>Derived Table</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>SourceDB</connection>
+    <sql>select distinct&#xd;&#xa;v.UNIT_CODE&#xd;&#xa;,concat &#x28;v.unit_code, concat &#x28;&#x27;-&#x27;,v.csa_code&#x29;&#x29; as staff_code&#xd;&#xa;from BO117_VILLAGE_LINK v&#xd;&#xa;inner join BO130_VILLAGE_MST vm on vm.UNIT_CODE&#x3d;v.UNIT_CODE and vm.VILLAGE_CODE&#x3d;v.VILLAGE_CODE&#xd;&#xa;where v.ID_NO in &#x28;SELECT  MAX &#x28;id_no&#x29; AS idno&#xd;&#xa;              	FROM bo117_village_link&#xd;&#xa;         GROUP BY unit_code, village_code&#x29;&#xd;&#xa;         and v.stop_date is null&#xd;&#xa;order by 1,2</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>128</xloc>
+      <yloc>87</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Merge Join</name>
     <type>MergeJoin</type>
@@ -200,32 +202,6 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>286</xloc>
       <yloc>224</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Derived Table</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>SourceDB</connection>
-    <sql>select distinct&#xd;&#xa;v.UNIT_CODE&#xd;&#xa;,concat &#x28;v.unit_code, concat &#x28;&#x27;-&#x27;,v.csa_code&#x29;&#x29; as staff_code&#xd;&#xa;from BO117_VILLAGE_LINK v&#xd;&#xa;inner join BO130_VILLAGE_MST vm on vm.UNIT_CODE&#x3d;v.UNIT_CODE and vm.VILLAGE_CODE&#x3d;v.VILLAGE_CODE&#xd;&#xa;where v.ID_NO in &#x28;SELECT  MAX &#x28;id_no&#x29; AS idno&#xd;&#xa;              	FROM bo117_village_link&#xd;&#xa;         GROUP BY unit_code, village_code&#x29;&#xd;&#xa;         and v.stop_date is null&#xd;&#xa;order by 1,2</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>117</xloc>
-      <yloc>147</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

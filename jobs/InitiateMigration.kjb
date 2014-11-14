@@ -141,8 +141,8 @@
       <parallel>Y</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>276</xloc>
-      <yloc>115</yloc>
+      <xloc>281</xloc>
+      <yloc>116</yloc>
       </entry>
     <entry>
       <name>Clear Previously Run Data</name>
@@ -205,8 +205,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>400</xloc>
-      <yloc>15</yloc>
+      <xloc>414</xloc>
+      <yloc>16</yloc>
       </entry>
     <entry>
       <name>Drop Index Client</name>
@@ -253,8 +253,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>402</xloc>
-      <yloc>115</yloc>
+      <xloc>416</xloc>
+      <yloc>114</yloc>
       </entry>
     <entry>
       <name>Drop Index staff</name>
@@ -317,8 +317,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>273</xloc>
-      <yloc>187</yloc>
+      <xloc>277</xloc>
+      <yloc>195</yloc>
       </entry>
     <entry>
       <name>Drop Index App User</name>
