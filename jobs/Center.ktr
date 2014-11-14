@@ -126,7 +126,7 @@
   <order>
   <hop> <from>Center Input</from><to>Database lookup</to><enabled>Y</enabled> </hop>
   <hop> <from>Database lookup</from><to>Database lookup 2</to><enabled>Y</enabled> </hop>
-  <hop> <from>Database lookup 2</from><to>Table output</to><enabled>Y</enabled> </hop>
+  <hop> <from>Database lookup 2</from><to>Insert &#x2f; Update</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Center Input</name>
@@ -239,6 +239,83 @@
     </step>
 
   <step>
+    <name>Insert &#x2f; Update</name>
+    <type>InsertUpdate</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <commit>100</commit>
+    <update_bypassed>N</update_bypassed>
+    <lookup>
+      <schema/>
+      <table>m_group</table>
+      <key>
+        <name>EXTERNAL_ID</name>
+        <field>external_id</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>external_id</name>
+        <rename>EXTERNAL_ID</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>activation_date</name>
+        <rename>ACTIVATION_DATE</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>level_id</name>
+        <rename>LEVEL_ID</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>display_name</name>
+        <rename>DISPLAY_NAME</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>activatedon_userid</name>
+        <rename>ACTIVATEDON_USERID</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>submittedon_date</name>
+        <rename>SUBMITEDON_DATE</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>submittedon_userid</name>
+        <rename>SUBMITEDON_USERID</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>office_id</name>
+        <rename>office_id</rename>
+        <update>N</update>
+      </value>
+      <value>
+        <name>staff_id</name>
+        <rename>staff_id</rename>
+        <update>N</update>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>549</xloc>
+      <yloc>189</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Table output</name>
     <type>TableOutput</type>
     <description/>
@@ -306,8 +383,8 @@
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>631</xloc>
-      <yloc>233</yloc>
+      <xloc>567</xloc>
+      <yloc>335</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
