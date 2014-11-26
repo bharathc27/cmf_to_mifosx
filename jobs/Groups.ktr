@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Create Datatables</name>
+    <name>Groups</name>
     <description/>
     <extended_description/>
     <trans_version/>
     <trans_type>Normal</trans_type>
-    <trans_status>0</trans_status>
     <directory>&#x2f;</directory>
     <parameters>
     </parameters>
@@ -67,9 +66,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2014&#x2f;11&#x2f;10 12&#x3a;04&#x3a;58.974</created_date>
+  <created_date>2014&#x2f;11&#x2f;26 14&#x3a;17&#x3a;08.967</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2014&#x2f;11&#x2f;10 12&#x3a;04&#x3a;58.974</modified_date>
+  <modified_date>2014&#x2f;11&#x2f;26 14&#x3a;17&#x3a;08.967</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -100,11 +99,63 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
+  <connection>
+    <name>SourceDB</name>
+    <server/>
+    <type>ORACLE</type>
+    <access>JNDI</access>
+    <database>SourceDB</database>
+    <port>1521</port>
+    <username/>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
   <order>
+  <hop> <from>Table input</from><to>Database lookup</to><enabled>Y</enabled> </hop>
+  <hop> <from>Database lookup</from><to>Table output</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>Execute SQL script</name>
-    <type>ExecSQL</type>
+    <name>Table input</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>SourceDB</connection>
+    <sql>select DISTINCT&#xd;&#xa;concat&#x28;concat&#x28;app.unit_code,&#x27;-&#x27;&#x29;,app.GROUP_NO&#x29; external_id,&#xd;&#xa;300 as status_enum,&#xd;&#xa;app.UNIT_CODE office_code,&#xd;&#xa;concat&#x28;concat&#x28;vl.UNIT_CODE,&#x27;-&#x27;&#x29;,vl.VILLAGE_CODE&#x29; parent_code,&#xd;&#xa;2 as level_id,&#xd;&#xa;concat&#x28;concat&#x28;app.unit_code,&#x27;-&#x27;&#x29;,app.GROUP_NO&#x29; display_name&#xd;&#xa;from BO301_LOAN_SUMM ls&#xd;&#xa;inner join BO503_APPLI_HDR app on app.UNIT_CODE&#x3d;ls.UNIT_CODE and app.LOAN_NO&#x3d;ls.LOAN_NO&#xd;&#xa;inner JOIN bo102_simptab_dtl loanpurpose ON loanpurpose.simptab_col &#x3d; app.activity_code AND loanpurpose.simp_tab &#x3d; &#x27;BO0107&#x27;&#xd;&#xa;inner join BO501_REGIS_HDR cll on cll.CLIENT_CODE&#x3d;app.CLIENT_CODE and cll.UNIT_CODE&#x3d;app.UNIT_CODE&#xd;&#xa;inner join BO117_VILLAGE_LINK lk on lk.UNIT_CODE&#x3d;cll.UNIT_CODE and lk.VILLAGE_CODE&#x3d;cll.VILLAGE_CODE&#xd;&#xa;inner join BO130_VILLAGE_MST vl on vl.UNIT_CODE&#x3d;lk.UNIT_CODE and vl.VILLAGE_CODE&#x3d;lk.VILLAGE_CODE&#xd;&#xa;inner join BO505_DISBURSEMENT_HDR ds on ds.UNIT_CODE&#x3d;ls.UNIT_CODE and ds.LOAN_NO&#x3d;ls.LOAN_NO&#xd;&#xa;INNER JOIN&#xd;&#xa;          &#x28;SELECT   MAX &#x28;id_no&#x29; AS idno, village_code AS vlcode,&#xd;&#xa;                          unit_code AS unitcode&#xd;&#xa;                     FROM bo117_village_link&#xd;&#xa;                 GROUP BY unit_code, village_code&#x29; a ON a.unitcode &#x3d; lk.unit_code AND a.vlcode &#x3d; lk.village_code  AND a.idno &#x3d; lk.id_no&#xd;&#xa;&#xd;&#xa;INNER JOIN BO105_PRODUCT_MST p on p.UNIT_CODE&#x3d;ls.UNIT_CODE and p.PRODUCT_CODE&#x3d;ls.PRODUCT_CODE and p.PROD_REV_CODE&#x3d;ls.PROD_REV_CODE&#xd;&#xa;where STATUS_CODE in &#x28;&#x27;003&#x27;,&#x27;004&#x27;,&#x27;005&#x27;,&#x27;006&#x27;,&#x27;009&#x27;&#x29;&#xd;&#xa;and ds.DISB_SRLNO&#x3d;1&#xd;&#xa;--and cll.UNIT_CODE&#x3d;041&#xd;&#xa;and app.GROUP_NO is not null&#xd;&#xa;order by 4</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>255</xloc>
+      <yloc>187</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Database lookup</name>
+    <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -114,22 +165,136 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <execute_each_row>N</execute_each_row>
-    <single_statement>N</single_statement>
-    <replace_variables>N</replace_variables>
-    <quoteString>N</quoteString>
-    <sql>DROP TABLE IF EXISTS &#x60;relation&#x60;&#x3b;&#xd;&#xa;CREATE TABLE IF NOT EXISTS &#x60;relation&#x60; &#x28;&#xd;&#xa;	&#x60;client_id&#x60; BIGINT&#x28;20&#x29; NOT NULL,&#xd;&#xa;	&#x60;Relation_cd_Relation&#x60; INT&#x28;11&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Name&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	PRIMARY KEY &#x28;&#x60;client_id&#x60;&#x29;,&#xd;&#xa;	CONSTRAINT &#x60;fk_relation_client_id&#x60; FOREIGN KEY &#x28;&#x60;client_id&#x60;&#x29; REFERENCES &#x60;m_client&#x60; &#x28;&#x60;id&#x60;&#x29;&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;DROP TABLE IF EXISTS &#x60;address&#x60;&#x3b;&#xd;&#xa;CREATE TABLE &#x60;address&#x60; &#x28;&#xd;&#xa;	&#x60;client_id&#x60; BIGINT&#x28;20&#x29; NOT NULL,&#xd;&#xa;	&#x60;Line 1&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Line 2&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Line 3&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Taluk&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;District&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;State&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	PRIMARY KEY &#x28;&#x60;client_id&#x60;&#x29;,&#xd;&#xa;	CONSTRAINT &#x60;fk_address_client_id&#x60; FOREIGN KEY &#x28;&#x60;client_id&#x60;&#x29; REFERENCES &#x60;m_client&#x60; &#x28;&#x60;id&#x60;&#x29;&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;DROP TABLE IF EXISTS &#x60;office address&#x60;&#x3b;&#xd;&#xa;CREATE TABLE IF NOT EXISTS &#x60;office address&#x60; &#x28;&#xd;&#xa;	&#x60;office_id&#x60; BIGINT&#x28;20&#x29; NOT NULL,&#xd;&#xa;	&#x60;Line 1&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Line 2&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Line 3&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;City&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Pincode&#x60; INT&#x28;11&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Phone&#x60; VARCHAR&#x28;50&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Fax&#x60; VARCHAR&#x28;50&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Email&#x60; VARCHAR&#x28;50&#x29; NULL DEFAULT NULL,&#xd;&#xa;	PRIMARY KEY &#x28;&#x60;office_id&#x60;&#x29;,&#xd;&#xa;	CONSTRAINT &#x60;fk_office_address_office_id&#x60; FOREIGN KEY &#x28;&#x60;office_id&#x60;&#x29; REFERENCES &#x60;m_office&#x60; &#x28;&#x60;id&#x60;&#x29;&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;DROP TABLE IF EXISTS &#x60;center details&#x60;&#x3b;&#xd;&#xa;CREATE TABLE IF NOT EXISTS &#x60;center details&#x60; &#x28;&#xd;&#xa;	&#x60;center_id&#x60; BIGINT&#x28;20&#x29; NOT NULL,&#xd;&#xa;	&#x60;Address&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Area Description&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Pincode&#x60; INT&#x28;11&#x29; NULL DEFAULT NULL,&#xd;&#xa;	PRIMARY KEY &#x28;&#x60;center_id&#x60;&#x29;,&#xd;&#xa;	CONSTRAINT &#x60;fk_center_details_group_id&#x60; FOREIGN KEY &#x28;&#x60;center_id&#x60;&#x29; REFERENCES &#x60;m_group&#x60; &#x28;&#x60;id&#x60;&#x29;&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;INSERT INTO &#x60;x_registered_table&#x60; &#x28;&#x60;registered_table_name&#x60;, &#x60;application_table_name&#x60;, &#x60;category&#x60;&#x29; VALUES &#x28;&#x27;Address&#x27;, &#x27;m_client&#x27;, 100&#x29;&#x3b;&#xd;&#xa;INSERT INTO &#x60;x_registered_table&#x60; &#x28;&#x60;registered_table_name&#x60;, &#x60;application_table_name&#x60;, &#x60;category&#x60;&#x29; VALUES &#x28;&#x27;Center Details&#x27;, &#x27;m_center&#x27;, 100&#x29;&#x3b;&#xd;&#xa;INSERT INTO &#x60;x_registered_table&#x60; &#x28;&#x60;registered_table_name&#x60;, &#x60;application_table_name&#x60;, &#x60;category&#x60;&#x29; VALUES &#x28;&#x27;Office Address&#x27;, &#x27;m_office&#x27;, 100&#x29;&#x3b;&#xd;&#xa;INSERT INTO &#x60;x_registered_table&#x60; &#x28;&#x60;registered_table_name&#x60;, &#x60;application_table_name&#x60;, &#x60;category&#x60;&#x29; VALUES &#x28;&#x27;Relation&#x27;, &#x27;m_client&#x27;, 100&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;</sql>
-    <set_params>N</set_params>
-    <insert_field/>
-    <update_field/>
-    <delete_field/>
-    <read_field/>
-    <arguments>
-    </arguments>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>m_group</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>PARENT_CODE</name>
+        <field>external_id</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id</name>
+        <rename>parent_id</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>activation_date</name>
+        <rename>activation_date</rename>
+        <default/>
+        <type>Date</type>
+      </value>
+      <value>
+        <name>submittedon_date</name>
+        <rename>submittedon_date</rename>
+        <default/>
+        <type>Date</type>
+      </value>
+      <value>
+        <name>activatedon_userid</name>
+        <rename>activatedon_userid</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>submittedon_userid</name>
+        <rename>submittedon_userid</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>staff_id</name>
+        <rename>staff_id</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>238</xloc>
-      <yloc>211</yloc>
+      <xloc>391</xloc>
+      <yloc>116</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <schema/>
+    <table>m_group</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>status_enum</column_name>
+          <stream_name>STATUS_ENUM</stream_name>
+        </field>
+        <field>
+          <column_name>office_id</column_name>
+          <stream_name>OFFICE_CODE</stream_name>
+        </field>
+        <field>
+          <column_name>level_id</column_name>
+          <stream_name>LEVEL_ID</stream_name>
+        </field>
+        <field>
+          <column_name>display_name</column_name>
+          <stream_name>DISPLAY_NAME</stream_name>
+        </field>
+        <field>
+          <column_name>parent_id</column_name>
+          <stream_name>parent_id</stream_name>
+        </field>
+        <field>
+          <column_name>activation_date</column_name>
+          <stream_name>activation_date</stream_name>
+        </field>
+        <field>
+          <column_name>submittedon_date</column_name>
+          <stream_name>submittedon_date</stream_name>
+        </field>
+        <field>
+          <column_name>activatedon_userid</column_name>
+          <stream_name>activatedon_userid</stream_name>
+        </field>
+        <field>
+          <column_name>submittedon_userid</column_name>
+          <stream_name>submittedon_userid</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>564</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

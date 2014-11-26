@@ -238,6 +238,10 @@
           <column_name>gender_cv_id</column_name>
           <stream_name>gender_cv_id</stream_name>
         </field>
+        <field>
+          <column_name>firstname</column_name>
+          <stream_name>FIRSTNAME</stream_name>
+        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
