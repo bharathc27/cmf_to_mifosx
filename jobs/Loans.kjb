@@ -86,7 +86,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>C&#x3a;&#x5c;cmf_to_mifosx&#x5c;jobs&#x5c;REST&#x5c;loan_details.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;REST&#x2f;loan_details.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -151,7 +151,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>C&#x3a;&#x5c;cmf_to_mifosx&#x5c;jobs&#x5c;REST&#x5c;loadLoansJson.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;REST&#x2f;loadLoansJson.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -184,7 +184,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>C&#x3a;&#x5c;cmf_to_mifosx&#x5c;jobs&#x5c;REST&#x5c;approve.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;REST&#x2f;approve.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -217,7 +217,7 @@
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>C&#x3a;&#x5c;cmf_to_mifosx&#x5c;jobs&#x5c;REST&#x5c;disburse.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;REST&#x2f;disburse.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -278,7 +278,7 @@
       <to>Create Loans &#x28;REST&#x29;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>

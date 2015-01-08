@@ -9,6 +9,7 @@ DELETE FROM m_appuser where id >1 ;
 ALTER TABLE m_appuser AUTO_INCREMENT=1;
 TRUNCATE m_staff;
 DELETE FROM `m_office` WHERE  `id` > 1;
+TRUNCATE m_product_loan_recalculation_details;
 TRUNCATE m_product_loan;
 TRUNCATE m_savings_product;
 TRUNCATE m_charge;

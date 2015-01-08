@@ -270,8 +270,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>149</xloc>
-      <yloc>274</yloc>
+      <xloc>148</xloc>
+      <yloc>272</yloc>
       </entry>
     <entry>
       <name>Drop Index Group</name>
@@ -318,8 +318,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>416</xloc>
-      <yloc>272</yloc>
+      <xloc>605</xloc>
+      <yloc>17</yloc>
       </entry>
     <entry>
       <name>Drop Index App User</name>
@@ -334,8 +334,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>149</xloc>
-      <yloc>361</yloc>
+      <xloc>150</xloc>
+      <yloc>359</yloc>
       </entry>
   </entries>
   <hops>
@@ -421,11 +421,11 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Center and Groups</from>
+      <from>Clients and Details</from>
       <to>Loans</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
@@ -433,12 +433,12 @@
   <notepads>
     <notepad>
       <note>Temporarily running separately&#xd;&#xa;&#x28;Fixing errors as and when encountered&#x29;</note>
-      <xloc>489</xloc>
-      <yloc>257</yloc>
+      <xloc>659</xloc>
+      <yloc>14</yloc>
       <width>221</width>
       <heigth>42</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
+      <fontname>Segoe UI</fontname>
+      <fontsize>9</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
