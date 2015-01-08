@@ -318,8 +318,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>418</xloc>
-      <yloc>271</yloc>
+      <xloc>416</xloc>
+      <yloc>272</yloc>
       </entry>
     <entry>
       <name>Drop Index App User</name>
@@ -433,8 +433,8 @@
   <notepads>
     <notepad>
       <note>Temporarily running separately&#xd;&#xa;&#x28;Fixing errors as and when encountered&#x29;</note>
-      <xloc>467</xloc>
-      <yloc>182</yloc>
+      <xloc>489</xloc>
+      <yloc>257</yloc>
       <width>221</width>
       <heigth>42</heigth>
       <fontname/>
