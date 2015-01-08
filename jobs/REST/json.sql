@@ -1,0 +1,8 @@
+select concat('{"clientId":"',c.id,'","productId":',mp.id,',"disbursementData":[{"expectedDisbursementDate":"',date_format(ld.disbursedon_date,'%d %M %Y'),'","principal":',ld.applied_amount,'}],"principal":',ld.applied_amount,',"loanTermFrequency":',(ld.repay_every * ld.installments),',"loanTermFrequencyType":',case ld.repay_freq when 'M' then 2 else 1 end,',"numberOfRepayments":',ld.installments,',"repaymentEvery":',ld.repay_every,',"repaymentFrequencyType":',ld.repayment_period_frequency,',"interestRatePerPeriod":',ld.interest,',"amortizationType":1,"interestType":0,"interestCalculationPeriodType":0,"graceOnArrearsAgeing":0,"transactionProcessingStrategyId":4',',"fixedEmiAmount":',ld.emi2,',"maxOutstandingLoanBalance":',ld.disbursed_amount,',"interestChargedFromDate":"',date_format(ld.disbursedon_date,'%d %M %Y'),'","repaymentsStartingFromDate":',date_format(ld.frp2,'%d %M %Y'),'","locale":"en","dateFormat":"dd MMMM yyyy","loanType":"individual","expectedDisbursementDate":"',date_format(ld.disbursedon_date,'%d %M %Y'),',"submittedOnDate":"',date_format(ld.submittedon_date,'%d %M %Y'),'","recalculationRestFrequencyDate":"',date_format(ld.disbursedon_date,'%d %M %Y'),'","charges":[',group_concat('{"chargeId":',mpc.charge_id,'"amount:"',mc.amount,'}'),']}')
+ from loan_details ld
+inner join m_client c on c.account_no=ld.client_code
+inner join m_product_loan mp on mp.name=ld.product_name
+inner join m_product_loan_charge mpc on mpc.product_loan_id=mp.id
+inner join m_charge mc on mc.id=mpc.charge_id
+#where ld.loan_external_id='031-0011204'
+group by ld.loan_external_id

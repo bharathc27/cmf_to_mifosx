@@ -1,16 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>Organisation</name>
+  <name>Loans</name>
     <description/>
     <extended_description/>
     <job_version/>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2014&#x2f;10&#x2f;28 14&#x3a;39&#x3a;58.978</created_date>
+  <created_date>2015&#x2f;01&#x2f;08 11&#x3a;05&#x3a;05.655</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2014&#x2f;10&#x2f;28 14&#x3a;39&#x3a;58.978</modified_date>
+  <modified_date>2015&#x2f;01&#x2f;08 11&#x3a;05&#x3a;05.655</modified_date>
     <parameters>
     </parameters>
+  <connection>
+    <name>DestinationDB</name>
+    <server/>
+    <type>MYSQL</type>
+    <access>JNDI</access>
+    <database>DestinationDB</database>
+    <port>1521</port>
+    <username/>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
     <slaveservers>
     </slaveservers>
 <job-log-table><connection/>
@@ -34,72 +61,6 @@
    <shared_objects_file/>
   <entries>
     <entry>
-      <name>Office</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Office New.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>323</xloc>
-      <yloc>204</yloc>
-      </entry>
-    <entry>
-      <name>Staff</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;staffNew.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>Y</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>565</xloc>
-      <yloc>76</yloc>
-      </entry>
-    <entry>
       <name>START</name>
       <description/>
       <type>SPECIAL</type>
@@ -116,16 +77,16 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>109</xloc>
-      <yloc>245</yloc>
+      <xloc>113</xloc>
+      <yloc>244</yloc>
       </entry>
     <entry>
-      <name>Users</name>
+      <name>Loan Details From Delfix</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Users.ktr</filename>
+      <filename>C&#x3a;&#x5c;cmf_to_mifosx&#x5c;jobs&#x5c;REST&#x5c;loan_details.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -149,16 +110,48 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>671</xloc>
-      <yloc>77</yloc>
+      <xloc>268</xloc>
+      <yloc>52</yloc>
       </entry>
     <entry>
-      <name>User Roles</name>
+      <name>Create Loan Details Table</name>
+      <description/>
+      <type>SQL</type>
+      <sql>CREATE TABLE &#x60;loan_details&#x60; &#x28;&#xd;&#xa;	&#x60;client_code&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;office_code&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;loan_no&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;loan_external_id&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;group_no&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;center&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;client_name&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;submittedon_date&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;applied_amount&#x60; BIGINT&#x28;10&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;approvedon_date&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;approved_amount&#x60; BIGINT&#x28;10&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;type&#x60; VARCHAR&#x28;1&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;disb_srlno&#x60; INT&#x28;2&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;disbursedon_date&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;disbursed_amount&#x60; BIGINT&#x28;10&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;first_repayment_on&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;frp2&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;interest&#x60; INT&#x28;3&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;installments&#x60; INT&#x28;3&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;datediff&#x60; INT&#x28;3&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;datediff2&#x60; INT&#x28;3&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;repay_freq&#x60; VARCHAR&#x28;1&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;repay_every&#x60; INT&#x28;2&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;repayment_period_frequency&#x60; INT&#x28;2&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;emi1&#x60; BIGINT&#x28;6&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;emi2&#x60; BIGINT&#x28;6&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;maturity_date&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;product_name&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;status&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>DestinationDB</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>113</xloc>
+      <yloc>52</yloc>
+      </entry>
+    <entry>
+      <name>Update Frequency</name>
+      <description/>
+      <type>SQL</type>
+      <sql>update loan_details ld set ld.repay_every&#x3d;4 where ld.repay_freq&#x3d;&#x27;B&#x27;&#x3b;&#xd;&#xa;update loan_details ld set ld.repay_every&#x3d;4 where ld.repay_freq&#x3d;&#x27;F&#x27;&#x3b;&#xd;&#xa;update loan_details ld set ld.repay_every&#x3d;4 where repay_freq&#x3d;&#x27;T&#x27; and datediff2&#x3d;28&#x3b;&#xd;&#xa;update loan_details ld set ld.repay_every&#x3d;4, ld.repayment_period_frequency&#x3d;1&#x3b;&#xd;&#xa;where repay_freq&#x3d;&#x27;M&#x27; and &#x28;datediff2&#x3d;28 or datediff&#x3d;28&#x29;&#xd;&#xa;and  product_name not in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;,&#x27;2 WHEELER LOAN&#x27;,&#x27;2 WHEELER LOAN FOR CHAITANYA&#x27;&#x29;&#x3b;&#xd;&#xa;update loan_details ld set ld.repay_every&#x3d;2 where ld.datediff&#x3c;&#x3d;14 or ld.datediff2&#x3c;&#x3d;14</sql>
+      <useVariableSubstitution>F</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>DestinationDB</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>264</xloc>
+      <yloc>161</yloc>
+      </entry>
+    <entry>
+      <name>Create Loans &#x28;REST&#x29;</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;User Roles.ktr</filename>
+      <filename>C&#x3a;&#x5c;cmf_to_mifosx&#x5c;jobs&#x5c;REST&#x5c;loadLoansJson.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -182,16 +175,16 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>776</xloc>
-      <yloc>77</yloc>
+      <xloc>421</xloc>
+      <yloc>54</yloc>
       </entry>
     <entry>
-      <name>Dummy Users</name>
+      <name>Approve Loans &#x28;REST&#x29;</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Dummy Users.ktr</filename>
+      <filename>C&#x3a;&#x5c;cmf_to_mifosx&#x5c;jobs&#x5c;REST&#x5c;approve.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -215,16 +208,16 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>564</xloc>
-      <yloc>241</yloc>
+      <xloc>559</xloc>
+      <yloc>55</yloc>
       </entry>
     <entry>
-      <name>Update Password</name>
+      <name>Disburse Loans &#x28;REST&#x29;</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Password Update.ktr</filename>
+      <filename>C&#x3a;&#x5c;cmf_to_mifosx&#x5c;jobs&#x5c;REST&#x5c;disburse.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -248,83 +241,14 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>890</xloc>
-      <yloc>76</yloc>
-      </entry>
-    <entry>
-      <name>Office Previous</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Office.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>140</xloc>
-      <yloc>48</yloc>
+      <xloc>711</xloc>
+      <yloc>55</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>Staff</from>
-      <to>Users</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Users</from>
-      <to>User Roles</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Staff</from>
-      <to>Dummy Users</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>User Roles</from>
-      <to>Update Password</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>START</from>
-      <to>Office Previous</to>
+      <to>Create Loan Details Table</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -332,8 +256,44 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Office Previous</from>
-      <to>Staff</to>
+      <from>Create Loan Details Table</from>
+      <to>Loan Details From Delfix</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Loan Details From Delfix</from>
+      <to>Update Frequency</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Update Frequency</from>
+      <to>Create Loans &#x28;REST&#x29;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Create Loans &#x28;REST&#x29;</from>
+      <to>Approve Loans &#x28;REST&#x29;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Approve Loans &#x28;REST&#x29;</from>
+      <to>Disburse Loans &#x28;REST&#x29;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>

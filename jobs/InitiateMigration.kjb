@@ -206,8 +206,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>414</xloc>
-      <yloc>16</yloc>
+      <xloc>417</xloc>
+      <yloc>18</yloc>
       </entry>
     <entry>
       <name>Drop Index Client</name>
@@ -290,7 +290,7 @@
       <yloc>110</yloc>
       </entry>
     <entry>
-      <name>Job</name>
+      <name>Loans</name>
       <description/>
       <type>JOB</type>
       <specification_method>filename</specification_method>
@@ -318,8 +318,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>277</xloc>
-      <yloc>195</yloc>
+      <xloc>413</xloc>
+      <yloc>267</yloc>
       </entry>
     <entry>
       <name>Drop Index App User</name>
@@ -420,8 +420,38 @@
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
     </hop>
+    <hop>
+      <from>Center and Groups</from>
+      <to>Loans</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>N</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
+    <notepad>
+      <note>Temporarily running separately&#xd;&#xa;&#x28;Fixing errors as and when encountered&#x29;</note>
+      <xloc>467</xloc>
+      <yloc>182</yloc>
+      <width>221</width>
+      <heigth>42</heigth>
+      <fontname/>
+      <fontsize>-1</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>205</backgroundcolorgreen>
+      <backgroundcolorblue>112</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
 
 </job>

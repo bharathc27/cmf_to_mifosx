@@ -1,4 +1,5 @@
 SET foreign_key_checks = 0;
+TRUNCATE m_portfolio_command_source;
 DELETE FROM m_appuser_role where appuser_id >1;
 ALTER TABLE m_appuser_role AUTO_INCREMENT=1;
 DELETE FROM m_role where id > 1;
@@ -17,6 +18,7 @@ TRUNCATE m_client;
 TRUNCATE m_group_client;
 TRUNCATE m_calendar;
 TRUNCATE m_calendar_instance;
+TRUNCATE m_loan_arrears_aging;
 TRUNCATE m_loan;
 TRUNCATE m_loan_disbursement_detail;
 TRUNCATE m_loan_charge;

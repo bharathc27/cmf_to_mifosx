@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<transformation>
+  <info>
+    <name>loan_details</name>
+    <description/>
+    <extended_description/>
+    <trans_version/>
+    <trans_type>Normal</trans_type>
+    <directory>&#x2f;</directory>
+    <parameters>
+    </parameters>
+    <log>
+<trans-log-table><connection/>
+<schema/>
+<table/>
+<size_limit_lines/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field><field><id>EXECUTING_SERVER</id><enabled>N</enabled><name>EXECUTING_SERVER</name></field><field><id>EXECUTING_USER</id><enabled>N</enabled><name>EXECUTING_USER</name></field><field><id>CLIENT</id><enabled>N</enabled><name>CLIENT</name></field></trans-log-table>
+<perf-log-table><connection/>
+<schema/>
+<table/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
+<channel-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<step-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
+<metrics-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>METRICS_DATE</id><enabled>Y</enabled><name>METRICS_DATE</name></field><field><id>METRICS_CODE</id><enabled>Y</enabled><name>METRICS_CODE</name></field><field><id>METRICS_DESCRIPTION</id><enabled>Y</enabled><name>METRICS_DESCRIPTION</name></field><field><id>METRICS_SUBJECT</id><enabled>Y</enabled><name>METRICS_SUBJECT</name></field><field><id>METRICS_TYPE</id><enabled>Y</enabled><name>METRICS_TYPE</name></field><field><id>METRICS_VALUE</id><enabled>Y</enabled><name>METRICS_VALUE</name></field></metrics-log-table>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit>100</step_performance_capturing_size_limit>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <slaveservers>
+    </slaveservers>
+    <clusterschemas>
+    </clusterschemas>
+  <created_user>-</created_user>
+  <created_date>2014&#x2f;12&#x2f;30 16&#x3a;50&#x3a;34.484</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2014&#x2f;12&#x2f;30 16&#x3a;50&#x3a;34.484</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>DestinationDB</name>
+    <server/>
+    <type>MYSQL</type>
+    <access>JNDI</access>
+    <database>DestinationDB</database>
+    <port>1521</port>
+    <username/>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>SourceDB</name>
+    <server/>
+    <type>ORACLE</type>
+    <access>JNDI</access>
+    <database>SourceDB</database>
+    <port>1521</port>
+    <username/>
+    <password>Encrypted </password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
+      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>Table input</from><to>Table output</to><enabled>Y</enabled> </hop>
+  </order>
+  <step>
+    <name>Table input</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>SourceDB</connection>
+    <sql>select concat&#x28;app.unit_code,app.CLIENT_CODE&#x29; client_code,&#xd;&#xa;app.UNIT_CODE office_code,&#xd;&#xa;app.LOAN_NO loan_no,&#xd;&#xa;concat&#x28;concat&#x28;app.unit_code,&#x27;-&#x27;&#x29;,app.LOAN_NO&#x29; loan_external_id,&#xd;&#xa;concat&#x28;concat&#x28;app.unit_code,&#x27;-&#x27;&#x29;,app.GROUP_NO&#x29; group_no,&#xd;&#xa;vl.VILLAGE_DESC center,&#xd;&#xa;cll.CLIENT_NAME client_name,&#xd;&#xa;app.APPL_DATE submittedon_date,&#xd;&#xa;app.APPL_AMOUNT applied_amount,&#xd;&#xa;ls.SANCTION_DATE approvedon_date,&#xd;&#xa;ls.SANCTION_AMT approved_amount,&#xd;&#xa;p.DISBURSE_TYPE type,&#xd;&#xa;ds.DISB_SRLNO,&#xd;&#xa;ds.DISB_DATE disbursedon_date,&#xd;&#xa;ds.DISB_AMT disbursed_amount,&#xd;&#xa;ds.INSTALL_STRTDATE first_repayment_on,&#xd;&#xa;sc.SCHEDULE_DATE frp2,&#xd;&#xa;ls.INT_RATE interest,&#xd;&#xa;ds.NO_OF_INSTALL installments,&#xd;&#xa;ds.repay_freq,&#xd;&#xa;sc2.schedule_date-sc.SCHEDULE_DATE datediff,&#xd;&#xa;sc3.schedule_date-sc2.SCHEDULE_DATE datediff2,&#xd;&#xa;case ds.REPAY_FREQ&#xd;&#xa;when &#x27;M&#x27; then 1&#xd;&#xa;when &#x27;T&#x27; then 4&#xd;&#xa;when &#x27;B&#x27; then 4&#xd;&#xa;else 2 end as repay_every,&#xd;&#xa;case ds.REPAY_FREQ&#xd;&#xa;when &#x27;M&#x27; then 2&#xd;&#xa;else 1 end as repayment_period_frequency,&#xd;&#xa;ds.EMI_AMT emi1,&#xd;&#xa;sc.PAYABLE_AMT emi2,&#xd;&#xa;ls.FINAL_DUE_DATE maturity_date,&#xd;&#xa;p.PRODUCT_DESCRIPTION product_name,&#xd;&#xa;ls.STATUS_CODE status&#xd;&#xa;from BO301_LOAN_SUMM ls&#xd;&#xa;inner join BO503_APPLI_HDR app on app.UNIT_CODE&#x3d;ls.UNIT_CODE and app.LOAN_NO&#x3d;ls.LOAN_NO&#xd;&#xa;inner JOIN bo102_simptab_dtl loanpurpose ON loanpurpose.simptab_col &#x3d; app.activity_code AND loanpurpose.simp_tab &#x3d; &#x27;BO0107&#x27;&#xd;&#xa;inner join BO501_REGIS_HDR cll on cll.CLIENT_CODE&#x3d;app.CLIENT_CODE and cll.UNIT_CODE&#x3d;app.UNIT_CODE&#xd;&#xa;inner join BO117_VILLAGE_LINK lk on lk.UNIT_CODE&#x3d;cll.UNIT_CODE and lk.VILLAGE_CODE&#x3d;cll.VILLAGE_CODE&#xd;&#xa;inner join BO130_VILLAGE_MST vl on vl.UNIT_CODE&#x3d;lk.UNIT_CODE and vl.VILLAGE_CODE&#x3d;lk.VILLAGE_CODE&#xd;&#xa;inner join BO505_DISBURSEMENT_HDR ds on ds.UNIT_CODE&#x3d;ls.UNIT_CODE and ds.LOAN_NO&#x3d;ls.LOAN_NO&#xd;&#xa;inner join BO509_DISBSCHEDULE sc on sc.UNIT_CODE&#x3d;app.UNIT_CODE and sc.LOAN_NO&#x3d;app.LOAN_NO and sc.SCH_SRLNO&#x3d;1&#xd;&#xa;inner join BO509_DISBSCHEDULE sc2 on sc2.UNIT_CODE&#x3d;app.UNIT_CODE and sc2.LOAN_NO&#x3d;app.LOAN_NO and sc2.SCH_SRLNO&#x3d;2&#xd;&#xa;inner join BO509_DISBSCHEDULE sc3 on sc3.UNIT_CODE&#x3d;app.UNIT_CODE and sc3.LOAN_NO&#x3d;app.LOAN_NO and sc3.SCH_SRLNO&#x3d;3&#xd;&#xa;&#xd;&#xa;INNER JOIN&#xd;&#xa;          &#x28;SELECT   MAX &#x28;id_no&#x29; AS idno, village_code AS vlcode,&#xd;&#xa;                          unit_code AS unitcode&#xd;&#xa;                     FROM bo117_village_link&#xd;&#xa;                 GROUP BY unit_code, village_code&#x29; a ON a.unitcode &#x3d; lk.unit_code AND a.vlcode &#x3d; lk.village_code  AND a.idno &#x3d; lk.id_no&#xd;&#xa;&#xd;&#xa;INNER JOIN BO105_PRODUCT_MST p on p.UNIT_CODE&#x3d;ls.UNIT_CODE and p.PRODUCT_CODE&#x3d;ls.PRODUCT_CODE and p.PROD_REV_CODE&#x3d;ls.PROD_REV_CODE&#xd;&#xa;where STATUS_CODE in &#x28;&#x27;003&#x27;,&#x27;004&#x27;,&#x27;005&#x27;,&#x27;006&#x27;,&#x27;009&#x27;&#x29;&#xd;&#xa;and p.DISBURSE_TYPE&#x3d;&#x27;S&#x27;&#xd;&#xa;--and app.unit_code&#x3d;006 and app.LOAN_NO&#x3d;0006566&#xd;&#xa;--and ds.REPAY_FREQ in &#x28;&#x27;T&#x27;&#x29;--,&#x27;F&#x27;,&#x27;M&#x27;,&#x27;T&#x27;&#x29;&#xd;&#xa;&#xd;&#xa;--and cll.UNIT_CODE&#x3d;041&#xd;&#xa;--and p.PRODUCT_DESCRIPTION&#x3d;&#x27;2 WHEELER LOAN FOR CHAITANYA&#x27;&#xd;&#xa;--and p.PRODUCT_DESCRIPTION not in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29;&#xd;&#xa;order by --2,5,ls.UNIT_CODE,ls.LOAN_NO&#xd;&#xa;ds.REPAY_FREQ</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>161</xloc>
+      <yloc>220</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table output</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <schema/>
+    <table>loan_details</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>client_code</column_name>
+          <stream_name>CLIENT_CODE</stream_name>
+        </field>
+        <field>
+          <column_name>office_code</column_name>
+          <stream_name>OFFICE_CODE</stream_name>
+        </field>
+        <field>
+          <column_name>loan_no</column_name>
+          <stream_name>LOAN_NO</stream_name>
+        </field>
+        <field>
+          <column_name>loan_external_id</column_name>
+          <stream_name>LOAN_EXTERNAL_ID</stream_name>
+        </field>
+        <field>
+          <column_name>group_no</column_name>
+          <stream_name>GROUP_NO</stream_name>
+        </field>
+        <field>
+          <column_name>center</column_name>
+          <stream_name>CENTER</stream_name>
+        </field>
+        <field>
+          <column_name>client_name</column_name>
+          <stream_name>CLIENT_NAME</stream_name>
+        </field>
+        <field>
+          <column_name>submittedon_date</column_name>
+          <stream_name>SUBMITTEDON_DATE</stream_name>
+        </field>
+        <field>
+          <column_name>applied_amount</column_name>
+          <stream_name>APPLIED_AMOUNT</stream_name>
+        </field>
+        <field>
+          <column_name>approvedon_date</column_name>
+          <stream_name>APPROVEDON_DATE</stream_name>
+        </field>
+        <field>
+          <column_name>approved_amount</column_name>
+          <stream_name>APPROVED_AMOUNT</stream_name>
+        </field>
+        <field>
+          <column_name>type</column_name>
+          <stream_name>TYPE</stream_name>
+        </field>
+        <field>
+          <column_name>disb_srlno</column_name>
+          <stream_name>DISB_SRLNO</stream_name>
+        </field>
+        <field>
+          <column_name>disbursedon_date</column_name>
+          <stream_name>DISBURSEDON_DATE</stream_name>
+        </field>
+        <field>
+          <column_name>disbursed_amount</column_name>
+          <stream_name>DISBURSED_AMOUNT</stream_name>
+        </field>
+        <field>
+          <column_name>first_repayment_on</column_name>
+          <stream_name>FIRST_REPAYMENT_ON</stream_name>
+        </field>
+        <field>
+          <column_name>frp2</column_name>
+          <stream_name>FRP2</stream_name>
+        </field>
+        <field>
+          <column_name>interest</column_name>
+          <stream_name>INTEREST</stream_name>
+        </field>
+        <field>
+          <column_name>installments</column_name>
+          <stream_name>INSTALLMENTS</stream_name>
+        </field>
+        <field>
+          <column_name>repay_freq</column_name>
+          <stream_name>REPAY_FREQ</stream_name>
+        </field>
+        <field>
+          <column_name>repay_every</column_name>
+          <stream_name>REPAY_EVERY</stream_name>
+        </field>
+        <field>
+          <column_name>repayment_period_frequency</column_name>
+          <stream_name>REPAYMENT_PERIOD_FREQUENCY</stream_name>
+        </field>
+        <field>
+          <column_name>emi1</column_name>
+          <stream_name>EMI1</stream_name>
+        </field>
+        <field>
+          <column_name>emi2</column_name>
+          <stream_name>EMI2</stream_name>
+        </field>
+        <field>
+          <column_name>maturity_date</column_name>
+          <stream_name>MATURITY_DATE</stream_name>
+        </field>
+        <field>
+          <column_name>product_name</column_name>
+          <stream_name>PRODUCT_NAME</stream_name>
+        </field>
+        <field>
+          <column_name>status</column_name>
+          <stream_name>STATUS</stream_name>
+        </field>
+        <field>
+          <column_name>datediff</column_name>
+          <stream_name>DATEDIFF</stream_name>
+        </field>
+        <field>
+          <column_name>datediff2</column_name>
+          <stream_name>DATEDIFF2</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>436</xloc>
+      <yloc>219</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+
+</transformation>
