@@ -474,8 +474,8 @@
   <notepads>
     <notepad>
       <note>Temporarily running separately&#xd;&#xa;&#x28;Fixing errors as and when encountered&#x29;</note>
-      <xloc>515</xloc>
-      <yloc>113</yloc>
+      <xloc>514</xloc>
+      <yloc>77</yloc>
       <width>221</width>
       <heigth>42</heigth>
       <fontname>Segoe UI</fontname>
@@ -495,8 +495,8 @@
     </notepad>
     <notepad>
       <note>Ignore errors on &#x22;Drop Index&#x22; SQL statements.&#xd;&#xa;These steps are required only for&#xd;&#xa;the fresh database of mifosx.</note>
-      <xloc>373</xloc>
-      <yloc>210</yloc>
+      <xloc>248</xloc>
+      <yloc>312</yloc>
       <width>262</width>
       <heigth>52</heigth>
       <fontname>Segoe Script Bold</fontname>

@@ -129,7 +129,7 @@
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>C&#x3a;&#x5c;cmf_to_mifosx&#x5c;Docs&#x5c;Roles and Permissions.xlsx</name>
+      <name>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;Docs&#x5c;Roles and Permissions.xlsx</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>

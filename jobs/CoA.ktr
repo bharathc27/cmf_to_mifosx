@@ -239,7 +239,7 @@
     <accept_field/>
     <accept_stepname/>
     <file>
-      <name>C&#x3a;&#x5c;cmf_to_mifosx&#x5c;Docs&#x5c;CoA.xls</name>
+      <name>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;Docs&#x5c;CoA.xls</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -296,7 +296,7 @@
       </field>
       <field>
         <name>Disabled</name>
-        <type>Number</type>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -308,7 +308,7 @@
       </field>
       <field>
         <name>ManualEntriesAllowed</name>
-        <type>Number</type>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
@@ -320,7 +320,7 @@
       </field>
       <field>
         <name>AccountUsage</name>
-        <type>Number</type>
+        <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
         <trim_type>none</trim_type>
