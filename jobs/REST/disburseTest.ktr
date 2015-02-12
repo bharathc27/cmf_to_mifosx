@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>disburse</name>
+    <name>disburseTest</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,9 +66,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;01&#x2f;07 10&#x3a;14&#x3a;46.927</created_date>
+  <created_date>2015&#x2f;02&#x2f;06 15&#x3a;15&#x3a;53.004</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;01&#x2f;07 10&#x3a;14&#x3a;46.927</modified_date>
+  <modified_date>2015&#x2f;02&#x2f;06 15&#x3a;15&#x3a;53.004</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -101,6 +101,11 @@
   </connection>
   <order>
   <hop> <from>Disburse Input</from><to>Disburse REST</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 10</from><to>Disburse REST 10</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 11</from><to>Disburse REST 11</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 12</from><to>Disburse REST 12</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 13</from><to>Disburse REST 13</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 14</from><to>Disburse REST 14</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 2</from><to>Disburse REST 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 3</from><to>Disburse REST 3</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 4</from><to>Disburse REST 4</to><enabled>Y</enabled> </hop>
@@ -109,11 +114,6 @@
   <hop> <from>Disburse Input 7</from><to>Disburse REST 7</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 8</from><to>Disburse REST 8</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 9</from><to>Disburse REST 9</to><enabled>Y</enabled> </hop>
-  <hop> <from>Disburse Input 10</from><to>Disburse REST 10</to><enabled>Y</enabled> </hop>
-  <hop> <from>Disburse Input 11</from><to>Disburse REST 11</to><enabled>Y</enabled> </hop>
-  <hop> <from>Disburse Input 12</from><to>Disburse REST 12</to><enabled>Y</enabled> </hop>
-  <hop> <from>Disburse Input 13</from><to>Disburse REST 13</to><enabled>Y</enabled> </hop>
-  <hop> <from>Disburse Input 14</from><to>Disburse REST 14</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Disburse Input</name>
@@ -127,7 +127,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 1 and 5000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 1 and 100&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -135,8 +135,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>51</xloc>
-      <yloc>17</yloc>
+      <xloc>94</xloc>
+      <yloc>23</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -153,7 +153,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 45001 and 50000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 901 and 1000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -161,8 +161,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>385</xloc>
-      <yloc>208</yloc>
+      <xloc>428</xloc>
+      <yloc>214</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -179,7 +179,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 50001 and 55000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 1001 and 1100&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -187,8 +187,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>382</xloc>
-      <yloc>287</yloc>
+      <xloc>425</xloc>
+      <yloc>293</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -205,7 +205,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 55001 and 60000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 1101 and 1200&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -213,8 +213,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>389</xloc>
-      <yloc>384</yloc>
+      <xloc>432</xloc>
+      <yloc>390</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -231,7 +231,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 60001 and 65000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 1201 and 1300&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -239,8 +239,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>358</xloc>
-      <yloc>461</yloc>
+      <xloc>401</xloc>
+      <yloc>467</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -257,7 +257,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 65001 and 70000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 1301 and 1400&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -265,8 +265,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>692</xloc>
-      <yloc>48</yloc>
+      <xloc>735</xloc>
+      <yloc>54</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -283,7 +283,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 5001 and 10000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 101 and 200&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -291,8 +291,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>51</xloc>
-      <yloc>97</yloc>
+      <xloc>94</xloc>
+      <yloc>103</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -309,7 +309,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 10001 and 15000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 201 and 300&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -317,8 +317,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>48</xloc>
-      <yloc>179</yloc>
+      <xloc>91</xloc>
+      <yloc>185</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -335,7 +335,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 15001 and 20000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 301 and 400&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -343,8 +343,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>44</xloc>
-      <yloc>254</yloc>
+      <xloc>87</xloc>
+      <yloc>260</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -361,7 +361,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 20001 and 25000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 401 and 500&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -369,8 +369,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>56</xloc>
-      <yloc>342</yloc>
+      <xloc>99</xloc>
+      <yloc>348</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -387,7 +387,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 25001 and 30000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 501 and 600&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -395,8 +395,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>50</xloc>
-      <yloc>414</yloc>
+      <xloc>93</xloc>
+      <yloc>420</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -413,7 +413,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 30001 and 35000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 601 and 700&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -421,8 +421,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>57</xloc>
-      <yloc>493</yloc>
+      <xloc>100</xloc>
+      <yloc>499</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -439,7 +439,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 35001 and 40000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 701 and 800&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -447,8 +447,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>383</xloc>
-      <yloc>37</yloc>
+      <xloc>426</xloc>
+      <yloc>43</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -465,7 +465,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 40001 and 45000&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 801 and 900&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -473,8 +473,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>383</xloc>
-      <yloc>122</yloc>
+      <xloc>426</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -524,8 +524,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>208</xloc>
-      <yloc>17</yloc>
+      <xloc>251</xloc>
+      <yloc>23</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -575,8 +575,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>542</xloc>
-      <yloc>208</yloc>
+      <xloc>585</xloc>
+      <yloc>214</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -626,8 +626,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>539</xloc>
-      <yloc>287</yloc>
+      <xloc>582</xloc>
+      <yloc>293</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -677,8 +677,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>546</xloc>
-      <yloc>384</yloc>
+      <xloc>589</xloc>
+      <yloc>390</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -728,8 +728,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>515</xloc>
-      <yloc>461</yloc>
+      <xloc>558</xloc>
+      <yloc>467</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -779,8 +779,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>849</xloc>
-      <yloc>48</yloc>
+      <xloc>892</xloc>
+      <yloc>54</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -830,8 +830,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>216</xloc>
-      <yloc>99</yloc>
+      <xloc>259</xloc>
+      <yloc>105</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -881,8 +881,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>230</xloc>
-      <yloc>179</yloc>
+      <xloc>273</xloc>
+      <yloc>185</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -932,8 +932,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>230</xloc>
-      <yloc>257</yloc>
+      <xloc>273</xloc>
+      <yloc>263</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -983,8 +983,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>229</xloc>
-      <yloc>340</yloc>
+      <xloc>272</xloc>
+      <yloc>346</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1034,8 +1034,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>207</xloc>
-      <yloc>414</yloc>
+      <xloc>250</xloc>
+      <yloc>420</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1085,8 +1085,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>214</xloc>
-      <yloc>493</yloc>
+      <xloc>257</xloc>
+      <yloc>499</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1136,8 +1136,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>540</xloc>
-      <yloc>37</yloc>
+      <xloc>583</xloc>
+      <yloc>43</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1187,8 +1187,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>552</xloc>
-      <yloc>120</yloc>
+      <xloc>595</xloc>
+      <yloc>126</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

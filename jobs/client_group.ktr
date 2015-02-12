@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>Code Values</name>
+    <name>client_group</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,9 +66,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2014&#x2f;11&#x2f;12 15&#x3a;56&#x3a;11.916</created_date>
+  <created_date>2015&#x2f;02&#x2f;10 10&#x3a;21&#x3a;04.270</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2014&#x2f;11&#x2f;12 15&#x3a;56&#x3a;11.916</modified_date>
+  <modified_date>2015&#x2f;02&#x2f;10 10&#x3a;21&#x3a;04.270</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -99,34 +99,38 @@
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>SourceDB1</name>
-    <server/>
-    <type>ORACLE</type>
-    <access>JNDI</access>
-    <database>SourceDB1</database>
-    <port>1521</port>
-    <username/>
-    <password>Encrypted </password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
-      <attribute><code>PRESERVE_RESERVED_WORD_CASE</code><attribute>N</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_TIMESTAMP_DATA_TYPE</code><attribute>Y</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
   <hop> <from>Table input</from><to>Database lookup</to><enabled>Y</enabled> </hop>
-  <hop> <from>Database lookup</from><to>Table output</to><enabled>Y</enabled> </hop>
+  <hop> <from>Database lookup</from><to>Database lookup 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Database lookup 2</from><to>Table output</to><enabled>Y</enabled> </hop>
+  <hop> <from>Table output</from><to>Table output 2</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>Table input</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select distinct a.client_code,a.group_no&#xd;&#xa;from &#x28;select client_code,group_no,length&#x28;ld.group_no&#x29; from loan_details ld&#xd;&#xa;where length&#x28;ld.group_no&#x29; &#x3e;4&#x29; a</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>311</xloc>
+      <yloc>90</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Database lookup</name>
     <type>DBLookup</type>
@@ -144,34 +148,34 @@
     <cache_size>0</cache_size>
     <lookup>
       <schema/>
-      <table>m_code</table>
+      <table>m_client</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>CODE_NAME</name>
-        <field>code_name</field>
+        <name>client_code</name>
+        <field>external_id</field>
         <condition>&#x3d;</condition>
         <name2/>
       </key>
       <value>
         <name>id</name>
-        <rename>code_id</rename>
+        <rename>client_id</rename>
         <default/>
         <type>Integer</type>
       </value>
     </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>402</xloc>
-      <yloc>82</yloc>
+      <xloc>459</xloc>
+      <yloc>90</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Table input</name>
-    <type>TableInput</type>
+    <name>Database lookup 2</name>
+    <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -180,17 +184,33 @@
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>SourceDB1</connection>
-    <sql>&#x2f;&#x2a;select &#xd;&#xa;c.SIMPTAB_DESC code_name&#xd;&#xa;,d.SIMPTABCOL_DESC code_value&#xd;&#xa;, row_number&#x28;&#x29; OVER &#x28;PARTITION BY c.simptab_desc ORDER BY c.simptab_desc&#x29; order_position&#xd;&#xa;from BO101_SIMPTAB_HDR c&#xd;&#xa;inner join BO102_SIMPTAB_DTL d on d.SIMP_TAB &#x3d; c.SIMP_TAB&#xd;&#xa;where c.SIMP_TAB not in &#x28; &#x27;BO0107&#x27;,&#x27;BO0125&#x27;&#x29;&#x2a;&#x2f;&#xd;&#xa;&#xd;&#xa;select a.&#x2a;&#xd;&#xa;, row_number&#x28;&#x29; OVER &#x28;PARTITION BY a.code_name ORDER BY a.code_name&#x29; order_position &#xd;&#xa;from &#x28;select DISTINCT&#xd;&#xa;c.SIMPTAB_DESC code_name&#xd;&#xa;,d.SIMPTABCOL_DESC code_value&#xd;&#xa;from BO101_SIMPTAB_HDR c&#xd;&#xa;inner join BO102_SIMPTAB_DTL d on d.SIMP_TAB &#x3d; c.SIMP_TAB&#xd;&#xa;where c.SIMP_TAB not in &#x28; &#x27;BO0107&#x27;,&#x27;BO0125&#x27;&#x29;&#x29; a</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <connection>DestinationDB</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>m_group</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>group_no</name>
+        <field>display_name</field>
+        <condition>&#x3d;</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>id</name>
+        <rename>group_id</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>139</xloc>
-      <yloc>184</yloc>
+      <xloc>576</xloc>
+      <yloc>92</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -208,7 +228,7 @@
            </partitioning>
     <connection>DestinationDB</connection>
     <schema/>
-    <table>m_code_value</table>
+    <table>m_group_client</table>
     <commit>1000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
@@ -225,27 +245,93 @@
     <return_field/>
     <fields>
         <field>
-          <column_name>code_value</column_name>
-          <stream_name>CODE_VALUE</stream_name>
+          <column_name>client_id</column_name>
+          <stream_name>client_id</stream_name>
         </field>
         <field>
-          <column_name>order_position</column_name>
-          <stream_name>ORDER_POSITION</stream_name>
-        </field>
-        <field>
-          <column_name>code_id</column_name>
-          <stream_name>code_id</stream_name>
+          <column_name>group_id</column_name>
+          <stream_name>group_id</stream_name>
         </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>655</xloc>
-      <yloc>178</yloc>
+      <xloc>578</xloc>
+      <yloc>199</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table output 2</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <schema/>
+    <table>error</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>Column 1</column_name>
+          <stream_name>client_code</stream_name>
+        </field>
+        <field>
+          <column_name>Column 2</column_name>
+          <stream_name>group_no</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>769</xloc>
+      <yloc>198</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step_error_handling>
+      <error>
+        <source_step>Database lookup 2</source_step>
+        <target_step>Table output 2</target_step>
+        <is_enabled>N</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename/>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors/>
+        <max_pct_errors/>
+        <min_pct_rows/>
+      </error>
+      <error>
+        <source_step>Table output</source_step>
+        <target_step>Table output 2</target_step>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename/>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors/>
+        <max_pct_errors/>
+        <min_pct_rows/>
+      </error>
   </step_error_handling>
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>

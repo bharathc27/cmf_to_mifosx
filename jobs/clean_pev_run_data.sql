@@ -1,5 +1,9 @@
 SET foreign_key_checks = 0;
+TRUNCATE disb_repay;
+TRUNCATE json_charge;
+TRUNCATE json_disb;
 TRUNCATE loan_details;
+TRUNCATE delfix_trxn;
 TRUNCATE m_portfolio_command_source;
 DELETE FROM m_appuser_role where appuser_id >1;
 ALTER TABLE m_appuser_role AUTO_INCREMENT=1;
@@ -58,7 +62,7 @@ TRUNCATE `m_savings_account_transaction`;
 TRUNCATE `m_savings_account`;
 TRUNCATE `m_savings_account_charge`;
 TRUNCATE `m_savings_account_charge_paid_by`;
-TRUNCATE `m_savings_account_interest_rate_chart;
+TRUNCATE `m_savings_account_interest_rate_chart`;
 TRUNCATE `m_savings_account_interest_rate_slab`;
 TRUNCATE `m_savings_account_transaction`;
 TRUNCATE `m_savings_product_charge`;

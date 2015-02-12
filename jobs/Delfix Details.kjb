@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <job>
-  <name>Loans</name>
+  <name>Delfix Details</name>
     <description/>
     <extended_description/>
     <job_version/>
   <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;01&#x2f;08 11&#x3a;05&#x3a;05.655</created_date>
+  <created_date>2015&#x2f;01&#x2f;16 14&#x3a;55&#x3a;25.920</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;01&#x2f;08 11&#x3a;05&#x3a;05.655</modified_date>
+  <modified_date>2015&#x2f;01&#x2f;16 14&#x3a;55&#x3a;25.920</modified_date>
     <parameters>
     </parameters>
   <connection>
@@ -61,138 +61,6 @@
    <shared_objects_file/>
   <entries>
     <entry>
-      <name>Create Loans &#x28;REST&#x29;</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;REST&#x5c;loadLoansJson.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>225</xloc>
-      <yloc>192</yloc>
-      </entry>
-    <entry>
-      <name>Approve Loans &#x28;REST&#x29;</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;REST&#x5c;approve.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>375</xloc>
-      <yloc>188</yloc>
-      </entry>
-    <entry>
-      <name>Disburse Loans &#x28;REST&#x29;</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;REST&#x5c;disburse.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>650</xloc>
-      <yloc>49</yloc>
-      </entry>
-    <entry>
-      <name>Repayments &#x28;REST&#x29;</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;REST&#x5c;repay.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>513</xloc>
-      <yloc>49</yloc>
-      </entry>
-    <entry>
       <name>START</name>
       <description/>
       <type>SPECIAL</type>
@@ -206,19 +74,19 @@
       <minutes>0</minutes>
       <weekDay>1</weekDay>
       <DayOfMonth>1</DayOfMonth>
-      <parallel>N</parallel>
+      <parallel>Y</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>92</xloc>
-      <yloc>192</yloc>
+      <xloc>78</xloc>
+      <yloc>231</yloc>
       </entry>
     <entry>
-      <name>Loan ID Mapping</name>
+      <name>Loan Details From Delfix</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;delfix_FK_mapping.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;REST&#x5c;loan_details.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -239,17 +107,17 @@
       <create_parent_folder>N</create_parent_folder>
       <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
+      </parameters>      <parallel>Y</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>227</xloc>
-      <yloc>59</yloc>
+      <xloc>375</xloc>
+      <yloc>231</yloc>
       </entry>
     <entry>
-      <name>Disburse&#x2f;Repay Details Load</name>
+      <name>Update Details-JSON</name>
       <description/>
       <type>SQL</type>
-      <sql>insert into disb_repay&#xd;&#xa;select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x2f;transactions&#x3f;command&#x3d;repayment&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#xd;&#xa;&#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#xd;&#xa;&#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#xd;&#xa;&#x22;transactionDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;dt.transaction_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;&#x27;&#x29;,&#x27;,&#xd;&#xa;&#x22;transactionAmount&#x22;&#x3a;&#x22;&#x27;,dt.amount,&#x27;&#x22;,&#xd;&#xa;&#x22;paymentTypeId&#x22;&#x3a;&#x22;&#x27;,case &#xd;&#xa;when dt.payment_type&#x3d;&#x27;C&#x27; then &#x28;select id from m_code_value where code_value&#x3d;&#x27;Cash&#x27;&#x29;&#xd;&#xa;when dt.payment_type&#x3d;&#x27;B&#x27; then &#x28;select id from m_code_value where code_value&#x3d;&#x27;Bank&#x27;&#x29;&#xd;&#xa;end,&#x27;&#x22;,&#xd;&#xa;&#x22;note&#x22;&#x3a; &#x22;&#x22;,&#xd;&#xa;&#x22;accountNumber&#x22;&#x3a;&#x22;&#x22;,&#xd;&#xa;&#x22;checkNumber&#x22;&#x3a;&#x22;&#x27;,ifnull&#x28;dt.cheque_no,&#x27;&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;routingCode&#x22;&#x3a;&#x22;&#x22;, &#xd;&#xa;&#x22;receiptNumber&#x22;&#x3a;&#x22;&#x27;,ifnull&#x28;dt.receipt_no,&#x27;&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;bankNumber&#x22;&#x3a;&#x22;&#x27;,ifnull&#x28;dt.bank_no,&#x27;&#x27;&#x29;,&#x27;&#x22;&#xd;&#xa;&#x7d;&#x27;&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;,&#xd;&#xa;ml.id loan_id,&#xd;&#xa;dt.transaction_date,&#xd;&#xa;&#x27;R&#x27; as &#x27;Type&#x27;&#xd;&#xa;from delfix_trxn dt &#xd;&#xa;inner join m_loan ml on ml.id&#x3d;dt.loan_id&#xd;&#xa;order by ml.id&#x3b;&#xd;&#xa;&#xd;&#xa;Insert into disb_repay&#xd;&#xa;select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,l.id,&#x27;&#x3f;command&#x3d;disburse&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;transactionAmount&#x22;&#x3a;&#x27;,round&#x28;md.principal&#x29;,&#x27;,&#xd;&#xa;&#x22;actualDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;md.expected_disburse_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;, &#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x27;,ifnull&#x28;round&#x28;l.fixed_emi_amount&#x29;,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;&#xd;&#xa;&#x7d;&#x27;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;,&#xd;&#xa;l.id &#x27;loan_id&#x27;,date&#x28;md.expected_disburse_date&#x29; &#x27;date&#x27;,&#xd;&#xa;&#x27;D&#x27; as &#x27;Type&#x27; from&#xd;&#xa;m_loan l &#xd;&#xa;inner join m_loan_disbursement_detail md on md.loan_id&#x3d;l.id&#xd;&#xa;order by 5,6</sql>
+      <sql>update loan_details ld set ld.repay_every&#x3d;4 where ld.repay_freq&#x3d;&#x27;B&#x27;&#x3b;&#xd;&#xa;update loan_details ld set ld.repay_every&#x3d;4 where ld.repay_freq&#x3d;&#x27;F&#x27;&#x3b;&#xd;&#xa;update loan_details ld set ld.repay_every&#x3d;4 where repay_freq&#x3d;&#x27;T&#x27; and datediff2&#x3d;28&#x3b;&#xd;&#xa;update loan_details ld set ld.repay_every&#x3d;4, ld.repayment_period_frequency&#x3d;1&#xd;&#xa;where repay_freq&#x3d;&#x27;M&#x27; and &#x28;datediff2&#x3d;28 or datediff&#x3d;28&#x29;&#xd;&#xa;and  product_name not in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;,&#x27;2 WHEELER LOAN&#x27;,&#x27;2 WHEELER LOAN FOR CHAITANYA&#x27;&#x29;&#x3b;&#xd;&#xa;update loan_details ld set ld.repay_every&#x3d;2 where ld.datediff&#x3c;&#x3d;14 or ld.datediff2&#x3c;&#x3d;14&#x3b;&#xd;&#xa;update loan_details ld set ld.product_name&#x3d;&#x27;2D LOAN&#x27; where ld.product_name&#x3d;&#x27;2D BUSINESS LOAN&#x27;&#x3b;&#xd;&#xa;update loan_details ld set ld.product_name&#x3d;&#x27;ONE YEAR JLG LOAN&#x27; where ld.product_name&#x3d;&#x27;ONE YEAR LOAN&#x27;&#x3b;&#xd;&#xa;update loan_details ld set ld.product_name&#x3d;&#x27;TWO YEAR ASSET LOAN&#x27; where ld.product_name&#x3d;&#x27;TWO YEAR ASSET BUSINESS LOAN&#x27;&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;INSERT into json_disb &#x28;loan_details_id,loan_external_id,disbursement_details,client_id,product_id&#x29;&#xd;&#xa;&#x28;select a.id,a.loan_external_id,a.disbursement_details,a.client_id,a.product_id from &#x28;select min&#x28;ld.id&#x29; id,&#xd;&#xa;ld.loan_external_id,concat&#x28;&#x27;&#x22;disbursementData&#x22;&#x3a;&#x5b;&#x27;,group_concat&#x28;&#x27;&#x7b;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;&#x7d;&#x27;&#x29;,&#x27;&#x5d;&#x27;,&#x27;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,sum&#x28;ld.disbursed_amount&#x29;,&#x27;,&#xd;&#xa;&#x22;maxOutstandingLoanBalance&#x22;&#x3a;&#x27;,sum&#x28;ld.disbursed_amount&#x29;&#x29; as disbursement_details,mc.id client_id,mp.id product_id&#xd;&#xa;from loan_details ld&#xd;&#xa;inner join m_client mc on mc.account_no&#x3d;ld.client_code&#xd;&#xa;inner join m_product_loan mp on mp.name&#x3d;ld.product_name&#xd;&#xa;group by ld.loan_external_id&#x29; a&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;INSERT INTO json_charge &#x28;loan_details_id,loan_external_id,charge_details&#x29;&#xd;&#xa;&#x2f;&#x2a;&#x28;select a.id,a.loan_external_id,a.charge_details from &#x28;select min&#x28;ld.id&#x29; id,ld.loan_external_id&#xd;&#xa;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#xd;&#xa;&#x7d;&#x27; else concat&#x28;&#x27;,&#xd;&#xa;&#x22;charges&#x22;&#x3a;&#x5b;&#x27;,group_concat&#x28;&#x27;&#x7b;&#x22;chargeId&#x22;&#x3a;&#x27;,ifnull&#x28;mpc.charge_id,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;,&#x22;amount&#x22;&#x3a;&#x27;,ifnull&#x28;mc.amount,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;&#x7d;&#x27;&#x29;,&#x27;&#x5d;&#xd;&#xa;&#x7d;&#x27;&#x29; end charge_details&#xd;&#xa;&#xd;&#xa;from loan_details ld&#xd;&#xa;inner join m_client c on c.account_no&#x3d;ld.client_code&#xd;&#xa;inner join m_product_loan mp on mp.name&#x3d;ld.product_name&#xd;&#xa;left join m_product_loan_charge mpc on mpc.product_loan_id&#x3d;mp.id&#xd;&#xa;left join m_charge mc on mc.id&#x3d;mpc.charge_id&#xd;&#xa;where ld.disb_srlno&#x3d;1&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by 2&#x29; a&#x29;&#x2a;&#x2f;&#xd;&#xa;&#x28;select a.id,a.loan_external_id,a.charge_details from &#x28;select min&#x28;ld.id&#x29; id,ld.loan_external_id&#xd;&#xa;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; or &#x28;ld.lpf is null and ld.insurance&#x29; then &#x27;&#xd;&#xa;&#x7d;&#x27; else &#xd;&#xa;concat&#x28;&#x27;,&#xd;&#xa;&#x22;charges&#x22;&#x3a;&#x5b;&#x27;,&#xd;&#xa;if&#x28;ld.lpf is null, &#xd;&#xa;               if&#x28;ld.insurance is null,&#x27;&#x5d;&#xd;&#xa;&#x7d;&#x27;,concat&#x28;&#x27;&#x7b;&#x22;chargeId&#x22;&#x3a;12,&#x22;amount&#x22;&#x3a;&#x27;,ld.insurance,&#x27;&#x5d;&#xd;&#xa;&#x7d;&#x27;&#x29;&#x29;, &#xd;&#xa;concat&#x28;&#x27;&#x7b;&#x22;chargeId&#x22;&#x3a;1,&#x22;amount&#x22;&#x3a;&#x27;,ld.lpf,&#x27;&#x7d;&#x27;,if&#x28;ld.insurance is null,&#x27;&#x5d;&#xd;&#xa;&#x7d;&#x27;,concat&#x28;&#x27;,&#x7b;&#x22;chargeId&#x22;&#x3a;12,&#x22;amount&#x22;&#x3a;&#x27;,ld.insurance,&#x27;&#x7d;&#x5d;&#xd;&#xa;&#x7d;&#x27;&#x29;&#x29;&#x29;&#x29;&#x29; end as charge_details&#xd;&#xa;from loan_details ld&#xd;&#xa;inner join m_client c on c.account_no&#x3d;ld.client_code&#xd;&#xa;where ld.disb_srlno&#x3d;1&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by 2&#x29; a&#x29;&#xd;&#xa;&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;INSERT INTO &#x60;m_code_value&#x60; &#x28;&#x60;code_id&#x60;, &#x60;code_value&#x60;, &#x60;code_description&#x60;, &#x60;order_position&#x60;, &#x60;code_score&#x60;&#x29; VALUES &#x28;12, &#x27;Cash&#x27;, &#x27;Payment by cash&#x27;, 0, NULL&#x29;&#x3b;&#xd;&#xa;INSERT INTO &#x60;m_code_value&#x60; &#x28;&#x60;code_id&#x60;, &#x60;code_value&#x60;, &#x60;code_description&#x60;, &#x60;order_position&#x60;, &#x60;code_score&#x60;&#x29; VALUES &#x28;12, &#x27;Bank&#x27;, &#x27;Payments by cheques&#x2f;account transfer&#x27;, 0, NULL&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;INSERT INTO &#x60;x_registered_table&#x60; &#x28;&#x60;registered_table_name&#x60;, &#x60;application_table_name&#x60;, &#x60;category&#x60;&#x29; VALUES &#x28;&#x27;Address&#x27;, &#x27;m_client&#x27;, 100&#x29;&#x3b;&#xd;&#xa;INSERT INTO &#x60;x_registered_table&#x60; &#x28;&#x60;registered_table_name&#x60;, &#x60;application_table_name&#x60;, &#x60;category&#x60;&#x29; VALUES &#x28;&#x27;Center Details&#x27;, &#x27;m_center&#x27;, 100&#x29;&#x3b;&#xd;&#xa;INSERT INTO &#x60;x_registered_table&#x60; &#x28;&#x60;registered_table_name&#x60;, &#x60;application_table_name&#x60;, &#x60;category&#x60;&#x29; VALUES &#x28;&#x27;Office Address&#x27;, &#x27;m_office&#x27;, 100&#x29;&#x3b;&#xd;&#xa;INSERT INTO &#x60;x_registered_table&#x60; &#x28;&#x60;registered_table_name&#x60;, &#x60;application_table_name&#x60;, &#x60;category&#x60;&#x29; VALUES &#x28;&#x27;Relation&#x27;, &#x27;m_client&#x27;, 100&#x29;&#x3b;&#xd;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -258,16 +126,16 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>83</xloc>
-      <yloc>58</yloc>
+      <xloc>379</xloc>
+      <yloc>116</yloc>
       </entry>
     <entry>
-      <name>Disburse &#x26; Repay</name>
+      <name>Delfix Transactions</name>
       <description/>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;REST&#x5c;disburse.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x5c;REST&#x5c;delfix_transactions.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -291,23 +159,56 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>375</xloc>
-      <yloc>59</yloc>
+      <xloc>230</xloc>
+      <yloc>118</yloc>
+      </entry>
+    <entry>
+      <name>Group-Client Mapping</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;client_group.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>543</xloc>
+      <yloc>231</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>Create Loans &#x28;REST&#x29;</from>
-      <to>Approve Loans &#x28;REST&#x29;</to>
+      <from>Loan Details From Delfix</from>
+      <to>Update Details-JSON</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>START</from>
-      <to>Create Loans &#x28;REST&#x29;</to>
+      <to>Loan Details From Delfix</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -315,29 +216,20 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Create Loans &#x28;REST&#x29;</from>
-      <to>Loan ID Mapping</to>
+      <from>START</from>
+      <to>Delfix Transactions</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
+      <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Loan ID Mapping</from>
-      <to>Disburse&#x2f;Repay Details Load</to>
+      <from>Loan Details From Delfix</from>
+      <to>Group-Client Mapping</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
-      <enabled>N</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Approve Loans &#x28;REST&#x29;</from>
-      <to>Disburse &#x26; Repay</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>N</enabled>
+      <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>

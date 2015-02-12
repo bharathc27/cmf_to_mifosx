@@ -107,7 +107,7 @@
       <force_separate_logging>N</force_separate_logging>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <set_append_logfile>N</set_append_logfile>
-      <parallel>N</parallel>
+      <parallel>Y</parallel>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>281</xloc>
@@ -142,8 +142,8 @@
       <parallel>Y</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>281</xloc>
-      <yloc>116</yloc>
+      <xloc>279</xloc>
+      <yloc>113</yloc>
       </entry>
     <entry>
       <name>Clear Previously Run Data</name>
@@ -206,8 +206,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>417</xloc>
-      <yloc>18</yloc>
+      <xloc>432</xloc>
+      <yloc>114</yloc>
       </entry>
     <entry>
       <name>Drop Index Client</name>
@@ -254,8 +254,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>416</xloc>
-      <yloc>114</yloc>
+      <xloc>278</xloc>
+      <yloc>228</yloc>
       </entry>
     <entry>
       <name>Drop Index staff</name>
@@ -277,7 +277,7 @@
       <name>Drop Index Group</name>
       <description/>
       <type>SQL</type>
-      <sql>ALTER TABLE &#x60;m_group&#x60;&#xd;&#xa;	DROP INDEX &#x60;name&#x60;&#x3b;</sql>
+      <sql>ALTER TABLE &#x60;m_group&#x60;&#xd;&#xa;	DROP INDEX &#x60;name&#x60;&#x3b;&#xd;&#xa;&#xd;&#xa;&#xd;&#xa;CREATE TABLE IF NOT EXISTS &#x60;loan_details&#x60; &#x28;&#xd;&#xa;	&#x60;id&#x60; BIGINT&#x28;20&#x29; NOT NULL AUTO_INCREMENT,&#xd;&#xa;	&#x60;client_code&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;office_code&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;loan_no&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;loan_external_id&#x60; VARCHAR&#x28;100&#x29; NOT NULL,&#xd;&#xa;	&#x60;group_no&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;center&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;client_name&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;submittedon_date&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;applied_amount&#x60; BIGINT&#x28;10&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;approvedon_date&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;approved_amount&#x60; BIGINT&#x28;10&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;type&#x60; VARCHAR&#x28;1&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;disb_srlno&#x60; INT&#x28;2&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;disbursedon_date&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;disbursed_amount&#x60; BIGINT&#x28;10&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;first_repayment_on&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;frp2&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;interest&#x60; INT&#x28;3&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;installments&#x60; INT&#x28;3&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;datediff&#x60; INT&#x28;3&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;datediff2&#x60; INT&#x28;3&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;repay_freq&#x60; VARCHAR&#x28;1&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;repay_every&#x60; INT&#x28;2&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;repayment_period_frequency&#x60; INT&#x28;2&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;emi1&#x60; BIGINT&#x28;6&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;emi2&#x60; BIGINT&#x28;6&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;maturity_date&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;product_name&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;status&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;lpf&#x60; INT&#x28;6&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;insurance&#x60; INT&#x28;6&#x29; NULL DEFAULT NULL,&#xd;&#xa;	PRIMARY KEY &#x28;&#x60;id&#x60;&#x29;&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;AUTO_INCREMENT&#x3d;1&#xd;&#xa;&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE IF NOT EXISTS &#x60;disb_repay&#x60; &#x28;&#xd;&#xa;	&#x60;URL&#x60; VARCHAR&#x28;500&#x29; NOT NULL COLLATE &#x27;latin1_swedish_ci&#x27;,&#xd;&#xa;	&#x60;JSON&#x60; VARCHAR&#x28;2000&#x29; NOT NULL COLLATE &#x27;latin1_swedish_ci&#x27;,&#xd;&#xa;	&#x60;Content-Type&#x60; VARCHAR&#x28;50&#x29; NOT NULL COLLATE &#x27;latin1_swedish_ci&#x27;,&#xd;&#xa;	&#x60;X-Mifos-Platform-TenantId&#x60; VARCHAR&#x28;50&#x29; NOT NULL COLLATE &#x27;latin1_swedish_ci&#x27;,&#xd;&#xa;	&#x60;Loan&#x60; BIGINT&#x28;20&#x29; NOT NULL,&#xd;&#xa;	&#x60;Date&#x60; DATE NOT NULL,&#xd;&#xa;	&#x60;Type&#x60; VARCHAR&#x28;1&#x29; NOT NULL COLLATE &#x27;latin1_swedish_ci&#x27;&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE IF NOT EXISTS &#x60;json_charge&#x60; &#x28;&#xd;&#xa;	&#x60;loan_details_id&#x60; BIGINT&#x28;20&#x29; NOT NULL,&#xd;&#xa;	&#x60;loan_external_id&#x60; VARCHAR&#x28;50&#x29; NOT NULL,&#xd;&#xa;	&#x60;charge_details&#x60; VARCHAR&#x28;1000&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;disb_srlno&#x60; INT&#x28;1&#x29; NOT NULL DEFAULT &#x27;1&#x27;,&#xd;&#xa;	PRIMARY KEY &#x28;&#x60;loan_external_id&#x60;&#x29;,&#xd;&#xa;	INDEX &#x60;loan_details_id&#x60; &#x28;&#x60;loan_details_id&#x60;&#x29;,&#xd;&#xa;	CONSTRAINT &#x60;fk_loan_details_id&#x60; FOREIGN KEY &#x28;&#x60;loan_details_id&#x60;&#x29; REFERENCES &#x60;loan_details&#x60; &#x28;&#x60;id&#x60;&#x29; ON UPDATE NO ACTION ON DELETE NO ACTION&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE IF NOT EXISTS &#x60;json_disb&#x60; &#x28;&#xd;&#xa;	&#x60;loan_details_id&#x60; BIGINT&#x28;20&#x29; NOT NULL,&#xd;&#xa;	&#x60;loan_external_id&#x60; VARCHAR&#x28;100&#x29; NOT NULL,&#xd;&#xa;	&#x60;disbursement_details&#x60; VARCHAR&#x28;1000&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;disb_srlno&#x60; INT&#x28;1&#x29; NOT NULL DEFAULT &#x27;1&#x27;,&#xd;&#xa;	&#x60;client_id&#x60; BIGINT&#x28;20&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;product_id&#x60; BIGINT&#x28;20&#x29; NULL DEFAULT NULL,&#xd;&#xa;	PRIMARY KEY &#x28;&#x60;loan_external_id&#x60;&#x29;,&#xd;&#xa;	INDEX &#x60;FK_loan_details_1&#x60; &#x28;&#x60;loan_details_id&#x60;&#x29;,&#xd;&#xa;	INDEX &#x60;FK_client_id&#x60; &#x28;&#x60;client_id&#x60;&#x29;,&#xd;&#xa;	INDEX &#x60;FK_product_id&#x60; &#x28;&#x60;product_id&#x60;&#x29;,&#xd;&#xa;	CONSTRAINT &#x60;FK_client_id&#x60; FOREIGN KEY &#x28;&#x60;client_id&#x60;&#x29; REFERENCES &#x60;m_client&#x60; &#x28;&#x60;id&#x60;&#x29; ON UPDATE NO ACTION ON DELETE NO ACTION,&#xd;&#xa;	CONSTRAINT &#x60;FK_loan_details_1&#x60; FOREIGN KEY &#x28;&#x60;loan_details_id&#x60;&#x29; REFERENCES &#x60;loan_details&#x60; &#x28;&#x60;id&#x60;&#x29; ON UPDATE NO ACTION ON DELETE NO ACTION,&#xd;&#xa;	CONSTRAINT &#x60;FK_product_id&#x60; FOREIGN KEY &#x28;&#x60;product_id&#x60;&#x29; REFERENCES &#x60;m_product_loan&#x60; &#x28;&#x60;id&#x60;&#x29; ON UPDATE NO ACTION ON DELETE NO ACTION&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE IF NOT EXISTS &#x60;delfix_trxn&#x60; &#x28;&#xd;&#xa;	&#x60;id&#x60; BIGINT&#x28;20&#x29; NOT NULL AUTO_INCREMENT,&#xd;&#xa;	&#x60;loan_external_id&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;unit_code&#x60; VARCHAR&#x28;10&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;loan_no&#x60; VARCHAR&#x28;50&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;transaction_date&#x60; DATE NULL DEFAULT NULL,&#xd;&#xa;	&#x60;amount&#x60; BIGINT&#x28;10&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;payment_type&#x60; VARCHAR&#x28;10&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;cheque_no&#x60; VARCHAR&#x28;20&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;receipt_no&#x60; VARCHAR&#x28;20&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;bank_no&#x60; VARCHAR&#x28;20&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;loan_id&#x60; BIGINT&#x28;20&#x29; NULL DEFAULT NULL,&#xd;&#xa;	PRIMARY KEY &#x28;&#x60;id&#x60;&#x29;,&#xd;&#xa;	INDEX &#x60;key1&#x60; &#x28;&#x60;loan_external_id&#x60;&#x29;,&#xd;&#xa;	INDEX &#x60;FK_loan_id&#x60; &#x28;&#x60;loan_id&#x60;&#x29;,&#xd;&#xa;	CONSTRAINT &#x60;FK_loan_id&#x60; FOREIGN KEY &#x28;&#x60;loan_id&#x60;&#x29; REFERENCES &#x60;m_loan&#x60; &#x28;&#x60;id&#x60;&#x29;&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE IF NOT EXISTS&#x60;address&#x60; &#x28;&#xd;&#xa;	&#x60;client_id&#x60; BIGINT&#x28;20&#x29; NOT NULL,&#xd;&#xa;	&#x60;Line 1&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Line 2&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Line 3&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Taluk&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;District&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;State&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	PRIMARY KEY &#x28;&#x60;client_id&#x60;&#x29;,&#xd;&#xa;	CONSTRAINT &#x60;fk_address_client_id&#x60; FOREIGN KEY &#x28;&#x60;client_id&#x60;&#x29; REFERENCES &#x60;m_client&#x60; &#x28;&#x60;id&#x60;&#x29;&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE IF NOT EXISTS &#x60;center details&#x60; &#x28;&#xd;&#xa;	&#x60;center_id&#x60; BIGINT&#x28;20&#x29; NOT NULL,&#xd;&#xa;	&#x60;Address&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Area Description&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Pincode&#x60; INT&#x28;11&#x29; NULL DEFAULT NULL,&#xd;&#xa;	PRIMARY KEY &#x28;&#x60;center_id&#x60;&#x29;,&#xd;&#xa;	CONSTRAINT &#x60;fk_center_details_group_id&#x60; FOREIGN KEY &#x28;&#x60;center_id&#x60;&#x29; REFERENCES &#x60;m_group&#x60; &#x28;&#x60;id&#x60;&#x29;&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE IF NOT EXISTS &#x60;office address&#x60; &#x28;&#xd;&#xa;	&#x60;office_id&#x60; BIGINT&#x28;20&#x29; NOT NULL,&#xd;&#xa;	&#x60;Line 1&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Line 2&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Line 3&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;City&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Pincode&#x60; INT&#x28;11&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Phone&#x60; VARCHAR&#x28;50&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Fax&#x60; VARCHAR&#x28;50&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Email&#x60; VARCHAR&#x28;50&#x29; NULL DEFAULT NULL,&#xd;&#xa;	PRIMARY KEY &#x28;&#x60;office_id&#x60;&#x29;,&#xd;&#xa;	CONSTRAINT &#x60;fk_office_address_office_id&#x60; FOREIGN KEY &#x28;&#x60;office_id&#x60;&#x29; REFERENCES &#x60;m_office&#x60; &#x28;&#x60;id&#x60;&#x29;&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;&#xd;&#xa;CREATE TABLE IF NOT EXISTS &#x60;relation&#x60; &#x28;&#xd;&#xa;	&#x60;client_id&#x60; BIGINT&#x28;20&#x29; NOT NULL,&#xd;&#xa;	&#x60;Relation_cd_Relation&#x60; INT&#x28;11&#x29; NULL DEFAULT NULL,&#xd;&#xa;	&#x60;Name&#x60; VARCHAR&#x28;100&#x29; NULL DEFAULT NULL,&#xd;&#xa;	PRIMARY KEY &#x28;&#x60;client_id&#x60;&#x29;,&#xd;&#xa;	CONSTRAINT &#x60;fk_relation_client_id&#x60; FOREIGN KEY &#x28;&#x60;client_id&#x60;&#x29; REFERENCES &#x60;m_client&#x60; &#x28;&#x60;id&#x60;&#x29;&#xd;&#xa;&#x29;&#xd;&#xa;COLLATE&#x3d;&#x27;utf8_general_ci&#x27;&#xd;&#xa;ENGINE&#x3d;InnoDB&#xd;&#xa;&#x3b;&#xd;&#xa;&#xd;&#xa;INSERT INTO &#x60;m_permission&#x60; &#x28; &#x60;grouping&#x60;, &#x60;code&#x60;, &#x60;entity_name&#x60;, &#x60;action_name&#x60;, &#x60;can_maker_checker&#x60;&#x29; VALUES &#x28;&#x27;datatable&#x27;, &#x27;READ_Address&#x27;, &#x27;Address&#x27;, &#x27;READ&#x27;, 0&#x29;&#x3b;&#xd;&#xa;INSERT INTO &#x60;m_permission&#x60; &#x28; &#x60;grouping&#x60;, &#x60;code&#x60;, &#x60;entity_name&#x60;, &#x60;action_name&#x60;, &#x60;can_maker_checker&#x60;&#x29; VALUES &#x28;&#x27;datatable&#x27;, &#x27;READ_Office Address&#x27;, &#x27;Office Address&#x27;, &#x27;READ&#x27;, 0&#x29;&#x3b;&#xd;&#xa;INSERT INTO &#x60;m_permission&#x60; &#x28; &#x60;grouping&#x60;, &#x60;code&#x60;, &#x60;entity_name&#x60;, &#x60;action_name&#x60;, &#x60;can_maker_checker&#x60;&#x29; VALUES &#x28;&#x27;datatable&#x27;, &#x27;READ_Relation&#x27;, &#x27;Relation&#x27;, &#x27;READ&#x27;, 0&#x29;&#x3b;&#xd;&#xa;INSERT INTO &#x60;m_permission&#x60; &#x28; &#x60;grouping&#x60;, &#x60;code&#x60;, &#x60;entity_name&#x60;, &#x60;action_name&#x60;, &#x60;can_maker_checker&#x60;&#x29; VALUES &#x28;&#x27;datatable&#x27;, &#x27;READ_Test&#x27;, &#x27;Test&#x27;, &#x27;READ&#x27;, 0&#x29;&#x3b;&#xd;&#xa;&#xd;&#xa;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -318,8 +318,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>605</xloc>
-      <yloc>17</yloc>
+      <xloc>536</xloc>
+      <yloc>14</yloc>
       </entry>
     <entry>
       <name>Drop Index App User</name>
@@ -336,6 +336,38 @@
       <nr>0</nr>
       <xloc>150</xloc>
       <yloc>359</yloc>
+      </entry>
+    <entry>
+      <name>Loan Data From Delfix</name>
+      <description/>
+      <type>JOB</type>
+      <specification_method>filename</specification_method>
+      <job_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;Delfix Details.kjb</filename>
+      <jobname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <expand_remote_job>N</expand_remote_job>
+      <create_parent_folder>N</create_parent_folder>
+      <pass_export>N</pass_export>
+      <force_separate_logging>N</force_separate_logging>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>435</xloc>
+      <yloc>15</yloc>
       </entry>
   </entries>
   <hops>
@@ -421,11 +453,20 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Clients and Details</from>
-      <to>Loans</to>
+      <from>Configurations</from>
+      <to>Loan Data From Delfix</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Loan Data From Delfix</from>
+      <to>Loans</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>N</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
@@ -433,8 +474,8 @@
   <notepads>
     <notepad>
       <note>Temporarily running separately&#xd;&#xa;&#x28;Fixing errors as and when encountered&#x29;</note>
-      <xloc>659</xloc>
-      <yloc>14</yloc>
+      <xloc>515</xloc>
+      <yloc>113</yloc>
       <width>221</width>
       <heigth>42</heigth>
       <fontname>Segoe UI</fontname>
@@ -454,8 +495,8 @@
     </notepad>
     <notepad>
       <note>Ignore errors on &#x22;Drop Index&#x22; SQL statements.&#xd;&#xa;These steps are required only for&#xd;&#xa;the fresh database of mifosx.</note>
-      <xloc>222</xloc>
-      <yloc>228</yloc>
+      <xloc>373</xloc>
+      <yloc>210</yloc>
       <width>262</width>
       <heigth>52</heigth>
       <fontname>Segoe Script Bold</fontname>
