@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>disburseBranch</name>
+    <name>t</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -66,9 +66,9 @@
     <clusterschemas>
     </clusterschemas>
   <created_user>-</created_user>
-  <created_date>2015&#x2f;02&#x2f;13 14&#x3a;45&#x3a;57.903</created_date>
+  <created_date>2015&#x2f;02&#x2f;19 18&#x3a;12&#x3a;58.875</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2015&#x2f;02&#x2f;13 14&#x3a;45&#x3a;57.903</modified_date>
+  <modified_date>2015&#x2f;02&#x2f;19 18&#x3a;12&#x3a;58.875</modified_date>
   </info>
   <notepads>
   </notepads>
@@ -101,11 +101,6 @@
   </connection>
   <order>
   <hop> <from>Disburse Input</from><to>Disburse REST</to><enabled>Y</enabled> </hop>
-  <hop> <from>Disburse Input 10</from><to>Disburse REST 10</to><enabled>Y</enabled> </hop>
-  <hop> <from>Disburse Input 11</from><to>Disburse REST 11</to><enabled>Y</enabled> </hop>
-  <hop> <from>Disburse Input 12</from><to>Disburse REST 12</to><enabled>Y</enabled> </hop>
-  <hop> <from>Disburse Input 13</from><to>Disburse REST 13</to><enabled>Y</enabled> </hop>
-  <hop> <from>Disburse Input 14</from><to>Disburse REST 14</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 2</from><to>Disburse REST 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 3</from><to>Disburse REST 3</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 4</from><to>Disburse REST 4</to><enabled>Y</enabled> </hop>
@@ -114,6 +109,11 @@
   <hop> <from>Disburse Input 7</from><to>Disburse REST 7</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 8</from><to>Disburse REST 8</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 9</from><to>Disburse REST 9</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 10</from><to>Disburse REST 10</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 11</from><to>Disburse REST 11</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 12</from><to>Disburse REST 12</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 13</from><to>Disburse REST 13</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 14</from><to>Disburse REST 14</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 15</from><to>Disburse REST 15</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 16</from><to>Disburse REST 16</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 17</from><to>Disburse REST 17</to><enabled>Y</enabled> </hop>
@@ -124,6 +124,10 @@
   <hop> <from>Disburse Input 22</from><to>Disburse REST 22</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 23</from><to>Disburse REST 23</to><enabled>Y</enabled> </hop>
   <hop> <from>Disburse Input 24</from><to>Disburse REST 24</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 25</from><to>Disburse REST 25</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 26</from><to>Disburse REST 26</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 27</from><to>Disburse REST 27</to><enabled>Y</enabled> </hop>
+  <hop> <from>Disburse Input 28</from><to>Disburse REST 28</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Disburse Input</name>
@@ -137,7 +141,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 1 and 2500&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;</sql>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;order by dr.loan&#xd;&#xa;limit 100</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -145,268 +149,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>38</xloc>
-      <yloc>23</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 10</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 22501 and 25000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>366</xloc>
-      <yloc>183</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 11</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 25001 and 27500&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>363</xloc>
-      <yloc>262</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 12</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 27501 and 30000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>366</xloc>
-      <yloc>346</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 13</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 30001 and 32500&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>368</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 14</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 32501 and 35000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>368</xloc>
-      <yloc>489</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 15</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 35001 and 37500&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>679</xloc>
-      <yloc>18</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 16</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 37501 and 40000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>682</xloc>
-      <yloc>101</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 17</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 42501 and 45000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>692</xloc>
-      <yloc>184</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 18</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 45001 and 47500&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>701</xloc>
-      <yloc>262</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 19</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 47501 and 50000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>707</xloc>
-      <yloc>344</yloc>
+      <xloc>45</xloc>
+      <yloc>26</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -423,7 +167,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 2501 and 5000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;</sql>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 100,100</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -431,60 +175,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>38</xloc>
-      <yloc>103</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 20</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 50001 and 52500&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>707</xloc>
-      <yloc>423</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 21</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 52501 and 55000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>709</xloc>
-      <yloc>492</yloc>
+      <xloc>47</xloc>
+      <yloc>102</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -501,7 +193,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 5001 and 7500&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;</sql>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 200,100</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -509,8 +201,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>35</xloc>
-      <yloc>185</yloc>
+      <xloc>48</xloc>
+      <yloc>184</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -527,7 +219,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 7501 and 10000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 300,100</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -535,8 +227,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>31</xloc>
-      <yloc>260</yloc>
+      <xloc>48</xloc>
+      <yloc>268</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -553,7 +245,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 10001 and 12500&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 700,100</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -561,8 +253,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>43</xloc>
-      <yloc>348</yloc>
+      <xloc>332</xloc>
+      <yloc>19</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -579,7 +271,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 12501 and 15000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 800,100</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -587,8 +279,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>37</xloc>
-      <yloc>420</yloc>
+      <xloc>336</xloc>
+      <yloc>102</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -605,7 +297,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 15001 and 17500&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 900,100</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -613,8 +305,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>44</xloc>
-      <yloc>499</yloc>
+      <xloc>342</xloc>
+      <yloc>181</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -631,7 +323,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 17501 and 20000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 1000,100</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -639,34 +331,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>360</xloc>
-      <yloc>19</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse Input 9</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 20001 and 22500&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;&#xd;&#xa;</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>358</xloc>
-      <yloc>99</yloc>
+      <xloc>352</xloc>
+      <yloc>261</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -716,518 +382,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>195</xloc>
-      <yloc>23</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse REST 10</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>JSON</applicationType>
-    <method>POST</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName>JSON</methodFieldName>
-    <urlField>URL</urlField>
-    <bodyField>JSON</bodyField>
-    <httpLogin>mifos</httpLogin>
-    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
-        </header>
-      <header>
-        <field>X-Mifos-Platform-TenantId</field>
-        <name>X-Mifos-Platform-TenantId</name>
-        </header>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>523</xloc>
-      <yloc>183</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse REST 11</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>JSON</applicationType>
-    <method>POST</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName>JSON</methodFieldName>
-    <urlField>URL</urlField>
-    <bodyField>JSON</bodyField>
-    <httpLogin>mifos</httpLogin>
-    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
-        </header>
-      <header>
-        <field>X-Mifos-Platform-TenantId</field>
-        <name>X-Mifos-Platform-TenantId</name>
-        </header>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>520</xloc>
-      <yloc>262</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse REST 12</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>JSON</applicationType>
-    <method>POST</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName>JSON</methodFieldName>
-    <urlField>URL</urlField>
-    <bodyField>JSON</bodyField>
-    <httpLogin>mifos</httpLogin>
-    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
-        </header>
-      <header>
-        <field>X-Mifos-Platform-TenantId</field>
-        <name>X-Mifos-Platform-TenantId</name>
-        </header>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>523</xloc>
-      <yloc>346</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse REST 13</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>JSON</applicationType>
-    <method>POST</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName>JSON</methodFieldName>
-    <urlField>URL</urlField>
-    <bodyField>JSON</bodyField>
-    <httpLogin>mifos</httpLogin>
-    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
-        </header>
-      <header>
-        <field>X-Mifos-Platform-TenantId</field>
-        <name>X-Mifos-Platform-TenantId</name>
-        </header>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>525</xloc>
-      <yloc>416</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse REST 14</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>JSON</applicationType>
-    <method>POST</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName>JSON</methodFieldName>
-    <urlField>URL</urlField>
-    <bodyField>JSON</bodyField>
-    <httpLogin>mifos</httpLogin>
-    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
-        </header>
-      <header>
-        <field>X-Mifos-Platform-TenantId</field>
-        <name>X-Mifos-Platform-TenantId</name>
-        </header>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>525</xloc>
-      <yloc>489</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse REST 15</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>JSON</applicationType>
-    <method>POST</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName>JSON</methodFieldName>
-    <urlField>URL</urlField>
-    <bodyField>JSON</bodyField>
-    <httpLogin>mifos</httpLogin>
-    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
-        </header>
-      <header>
-        <field>X-Mifos-Platform-TenantId</field>
-        <name>X-Mifos-Platform-TenantId</name>
-        </header>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>836</xloc>
-      <yloc>18</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse REST 16</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>JSON</applicationType>
-    <method>POST</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName>JSON</methodFieldName>
-    <urlField>URL</urlField>
-    <bodyField>JSON</bodyField>
-    <httpLogin>mifos</httpLogin>
-    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
-        </header>
-      <header>
-        <field>X-Mifos-Platform-TenantId</field>
-        <name>X-Mifos-Platform-TenantId</name>
-        </header>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>839</xloc>
-      <yloc>101</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse REST 17</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>JSON</applicationType>
-    <method>POST</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName>JSON</methodFieldName>
-    <urlField>URL</urlField>
-    <bodyField>JSON</bodyField>
-    <httpLogin>mifos</httpLogin>
-    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
-        </header>
-      <header>
-        <field>X-Mifos-Platform-TenantId</field>
-        <name>X-Mifos-Platform-TenantId</name>
-        </header>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>849</xloc>
-      <yloc>184</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse REST 18</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>JSON</applicationType>
-    <method>POST</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName>JSON</methodFieldName>
-    <urlField>URL</urlField>
-    <bodyField>JSON</bodyField>
-    <httpLogin>mifos</httpLogin>
-    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
-        </header>
-      <header>
-        <field>X-Mifos-Platform-TenantId</field>
-        <name>X-Mifos-Platform-TenantId</name>
-        </header>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>858</xloc>
-      <yloc>262</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse REST 19</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>JSON</applicationType>
-    <method>POST</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName>JSON</methodFieldName>
-    <urlField>URL</urlField>
-    <bodyField>JSON</bodyField>
-    <httpLogin>mifos</httpLogin>
-    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
-        </header>
-      <header>
-        <field>X-Mifos-Platform-TenantId</field>
-        <name>X-Mifos-Platform-TenantId</name>
-        </header>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>864</xloc>
-      <yloc>344</yloc>
+      <xloc>202</xloc>
+      <yloc>26</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1277,110 +433,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>203</xloc>
-      <yloc>105</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse REST 20</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>JSON</applicationType>
-    <method>POST</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName>JSON</methodFieldName>
-    <urlField>URL</urlField>
-    <bodyField>JSON</bodyField>
-    <httpLogin>mifos</httpLogin>
-    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
-        </header>
-      <header>
-        <field>X-Mifos-Platform-TenantId</field>
-        <name>X-Mifos-Platform-TenantId</name>
-        </header>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>883</xloc>
-      <yloc>424</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Disburse REST 21</name>
-    <type>Rest</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <applicationType>JSON</applicationType>
-    <method>POST</method>
-    <url/>
-    <urlInField>Y</urlInField>
-    <dynamicMethod>N</dynamicMethod>
-    <methodFieldName>JSON</methodFieldName>
-    <urlField>URL</urlField>
-    <bodyField>JSON</bodyField>
-    <httpLogin>mifos</httpLogin>
-    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
-    <proxyHost/>
-    <proxyPort/>
-    <preemptive>N</preemptive>
-    <trustStoreFile/>
-    <trustStorePassword>Encrypted </trustStorePassword>
-    <headers>
-      <header>
-        <field>Content-Type</field>
-        <name>Content-Type</name>
-        </header>
-      <header>
-        <field>X-Mifos-Platform-TenantId</field>
-        <name>X-Mifos-Platform-TenantId</name>
-        </header>
-      </headers>
-    <parameters>
-      </parameters>
-    <result>
-      <name>result</name>
-      <code/>
-      <response_time/>
-      </result>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>866</xloc>
-      <yloc>492</yloc>
+      <xloc>209</xloc>
+      <yloc>102</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1431,7 +485,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>217</xloc>
-      <yloc>185</yloc>
+      <yloc>184</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1481,8 +535,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>217</xloc>
-      <yloc>263</yloc>
+      <xloc>205</xloc>
+      <yloc>268</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1532,8 +586,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>216</xloc>
-      <yloc>346</yloc>
+      <xloc>489</xloc>
+      <yloc>19</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1583,8 +637,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>194</xloc>
-      <yloc>420</yloc>
+      <xloc>493</xloc>
+      <yloc>102</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1634,8 +688,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>201</xloc>
-      <yloc>499</yloc>
+      <xloc>499</xloc>
+      <yloc>181</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1685,8 +739,34 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>517</xloc>
-      <yloc>19</yloc>
+      <xloc>509</xloc>
+      <yloc>261</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 9</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 400,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>74</xloc>
+      <yloc>345</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1736,8 +816,932 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>527</xloc>
-      <yloc>97</yloc>
+      <xloc>231</xloc>
+      <yloc>345</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 10</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 1100,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>361</xloc>
+      <yloc>349</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 10</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>518</xloc>
+      <yloc>349</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 11</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 500,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>69</xloc>
+      <yloc>430</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 11</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>226</xloc>
+      <yloc>430</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 12</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 600,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>70</xloc>
+      <yloc>510</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 12</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>234</xloc>
+      <yloc>510</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 13</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 1200,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>372</xloc>
+      <yloc>431</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 13</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>529</xloc>
+      <yloc>431</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 14</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 1300,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>367</xloc>
+      <yloc>506</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 14</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>524</xloc>
+      <yloc>506</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 15</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 1400,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>592</xloc>
+      <yloc>22</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 15</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>749</xloc>
+      <yloc>22</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 16</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 1500,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>599</xloc>
+      <yloc>102</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 16</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>756</xloc>
+      <yloc>102</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 17</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 1600,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>611</xloc>
+      <yloc>178</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 17</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>768</xloc>
+      <yloc>178</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 18</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 1700,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>630</xloc>
+      <yloc>255</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 18</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>787</xloc>
+      <yloc>255</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 19</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 1800,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>632</xloc>
+      <yloc>340</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 19</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>789</xloc>
+      <yloc>340</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 20</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 1900,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>639</xloc>
+      <yloc>421</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 20</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>796</xloc>
+      <yloc>421</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 21</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 2000,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>649</xloc>
+      <yloc>512</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 21</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>806</xloc>
+      <yloc>512</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1754,7 +1758,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 55001 and 57500&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;</sql>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 2100,100</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1762,8 +1766,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>713</xloc>
-      <yloc>554</yloc>
+      <xloc>853</xloc>
+      <yloc>59</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1813,8 +1817,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>870</xloc>
-      <yloc>554</yloc>
+      <xloc>1010</xloc>
+      <yloc>59</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1831,7 +1835,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 57501 and 60000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;</sql>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 2200,100</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1839,8 +1843,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>373</xloc>
-      <yloc>560</yloc>
+      <xloc>859</xloc>
+      <yloc>148</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1890,8 +1894,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>530</xloc>
-      <yloc>560</yloc>
+      <xloc>1016</xloc>
+      <yloc>148</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1908,7 +1912,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select dr.URL,dr.JSON,dr.&#x60;Content-Type&#x60;,dr.&#x60;X-Mifos-Platform-TenantId&#x60;,dr.loan from disb_repay dr&#xd;&#xa;where dr.loan between 60001 and 70000&#xd;&#xa;and dr.office_id &#x3d; &#x24;&#x7b;OFFICE&#x7d;&#xd;&#xa;order by dr.Loan,dr.Date&#x3b;</sql>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 2300,100</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -1916,8 +1920,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>55</xloc>
-      <yloc>569</yloc>
+      <xloc>873</xloc>
+      <yloc>232</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1967,8 +1971,316 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>212</xloc>
-      <yloc>569</yloc>
+      <xloc>1030</xloc>
+      <yloc>232</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 25</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 2400,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>890</xloc>
+      <yloc>372</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 25</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1047</xloc>
+      <yloc>372</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 26</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 2500,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>889</xloc>
+      <yloc>444</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 26</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1046</xloc>
+      <yloc>444</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 27</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 2600,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>901</xloc>
+      <yloc>505</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 27</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1058</xloc>
+      <yloc>505</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse Input 28</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select &#x2a; from disb_repay dr where dr.&#x60;Type&#x60;&#x3d;&#x27;R&#x27;&#xd;&#xa;limit 2700,100</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>865</xloc>
+      <yloc>308</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Disburse REST 28</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName>JSON</methodFieldName>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code/>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>1022</xloc>
+      <yloc>308</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

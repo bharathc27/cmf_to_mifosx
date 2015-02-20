@@ -107,7 +107,41 @@
   <hop> <from>Submit Loan 5</from><to>Submit Loan REST 5</to><enabled>Y</enabled> </hop>
   <hop> <from>Submit Loan 6</from><to>Submit Loan REST 6</to><enabled>Y</enabled> </hop>
   <hop> <from>Submit Loan 7</from><to>Submit Loan REST 7</to><enabled>Y</enabled> </hop>
+  <hop> <from>Submit Loan</from><to>Submit Loan REST</to><enabled>Y</enabled> </hop>
+  <hop> <from>Submit Loan 8</from><to>Submit Loan REST 8</to><enabled>Y</enabled> </hop>
+  <hop> <from>Submit Loan 9</from><to>Submit Loan REST 9</to><enabled>Y</enabled> </hop>
+  <hop> <from>Submit Loan 10</from><to>Submit Loan REST 10</to><enabled>Y</enabled> </hop>
+  <hop> <from>Submit Loan 11</from><to>Submit Loan REST 11</to><enabled>Y</enabled> </hop>
+  <hop> <from>Submit Loan 12</from><to>Submit Loan REST 12</to><enabled>Y</enabled> </hop>
+  <hop> <from>Submit Loan 13</from><to>Submit Loan REST 13</to><enabled>Y</enabled> </hop>
+  <hop> <from>Submit Loan 14</from><to>Submit Loan REST 14</to><enabled>Y</enabled> </hop>
   </order>
+  <step>
+    <name>Submit Loan</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 65000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>731</xloc>
+      <yloc>235</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Submit Loan 1</name>
     <type>TableInput</type>
@@ -120,7 +154,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 10000</sql>
+    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -130,6 +164,110 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>96</xloc>
       <yloc>31</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan 10</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 45000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>406</xloc>
+      <yloc>294</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan 11</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 50000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>427</xloc>
+      <yloc>385</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan 12</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 55000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>727</xloc>
+      <yloc>51</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan 13</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 60000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>728</xloc>
+      <yloc>140</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -146,7 +284,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 10000,10000</sql>
+    <sql>select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 5000,5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -172,7 +310,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 20000,10000</sql>
+    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 10000,5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -198,7 +336,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 30000,10000</sql>
+    <sql>select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 30000,5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -224,7 +362,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 40000,10000</sql>
+    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 35000,5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -250,7 +388,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>&#x2f;&#x2a;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,c.id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,mp.id,&#x27;,&#xd;&#xa;&#x22;disbursementData&#x22;&#x3a;&#x5b;&#x7b;&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;&#x7d;&#x5d;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,case ld.repay_freq when &#x27;M&#x27; then 2 else 1 end,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;maxOutstandingLoanBalance&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x22;&#xd;&#xa;&#x7d;&#x27; else concat&#x28;&#x27;&#x22;,&#xd;&#xa;&#x22;charges&#x22;&#x3a;&#x5b;&#x27;,group_concat&#x28;&#x27;&#x7b;&#x22;chargeId&#x22;&#x3a;&#x27;,ifnull&#x28;mpc.charge_id,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;,&#x22;amount&#x22;&#x3a;&#x27;,ifnull&#x28;mc.amount,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;&#x7d;&#x27;&#x29;,&#x27;&#x5d;&#x7d;&#x27;&#x29; end &#x29;as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;,&#xd;&#xa;mp.name,&#xd;&#xa;ld.loan_external_id&#xd;&#xa;from loan_details ld&#xd;&#xa;inner join m_client c on c.account_no&#x3d;ld.client_code&#xd;&#xa;inner join m_product_loan mp on mp.name&#x3d;ld.product_name&#xd;&#xa;left join m_product_loan_charge mpc on mpc.product_loan_id&#x3d;mp.id&#xd;&#xa;left join m_charge mc on mc.id&#x3d;mpc.charge_id&#xd;&#xa;&#x23;where mp.id not in &#x28;11,12,13,14,15,16,17,18,19&#x29;&#xd;&#xa;&#x23;and ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;&#x23;order by 5&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,c.id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,mp.id,&#x27;,&#xd;&#xa;&#x22;disbursementData&#x22;&#x3a;&#x5b;&#x7b;&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;&#x7d;&#x5d;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;maxOutstandingLoanBalance&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x22;&#xd;&#xa;&#x7d;&#x27; else concat&#x28;&#x27;&#x22;,&#xd;&#xa;&#x22;charges&#x22;&#x3a;&#x5b;&#x27;,group_concat&#x28;&#x27;&#x7b;&#x22;chargeId&#x22;&#x3a;&#x27;,ifnull&#x28;mpc.charge_id,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;,&#x22;amount&#x22;&#x3a;&#x27;,ifnull&#x28;mc.amount,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;&#x7d;&#x27;&#x29;,&#x27;&#x5d;&#x7d;&#x27;&#x29; end &#x29;as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;,&#xd;&#xa;mp.name,&#xd;&#xa;ld.loan_external_id&#xd;&#xa;from loan_details ld&#xd;&#xa;inner join m_client c on c.account_no&#x3d;ld.client_code&#xd;&#xa;inner join m_product_loan mp on mp.name&#x3d;ld.product_name&#xd;&#xa;left join m_product_loan_charge mpc on mpc.product_loan_id&#x3d;mp.id&#xd;&#xa;left join m_charge mc on mc.id&#x3d;mpc.charge_id&#xd;&#xa;&#x23;where mp.id not in &#x28;11,12,13,14,15,16,17,18,19&#x29;&#xd;&#xa;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;&#x23;order by 5&#xd;&#xa;&#x2a;&#x2f;&#xd;&#xa;&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 50000,10000</sql>
+    <sql>&#x2f;&#x2a;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,c.id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,mp.id,&#x27;,&#xd;&#xa;&#x22;disbursementData&#x22;&#x3a;&#x5b;&#x7b;&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;&#x7d;&#x5d;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,case ld.repay_freq when &#x27;M&#x27; then 2 else 1 end,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;maxOutstandingLoanBalance&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x22;&#xd;&#xa;&#x7d;&#x27; else concat&#x28;&#x27;&#x22;,&#xd;&#xa;&#x22;charges&#x22;&#x3a;&#x5b;&#x27;,group_concat&#x28;&#x27;&#x7b;&#x22;chargeId&#x22;&#x3a;&#x27;,ifnull&#x28;mpc.charge_id,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;,&#x22;amount&#x22;&#x3a;&#x27;,ifnull&#x28;mc.amount,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;&#x7d;&#x27;&#x29;,&#x27;&#x5d;&#x7d;&#x27;&#x29; end &#x29;as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;,&#xd;&#xa;mp.name,&#xd;&#xa;ld.loan_external_id&#xd;&#xa;from loan_details ld&#xd;&#xa;inner join m_client c on c.account_no&#x3d;ld.client_code&#xd;&#xa;inner join m_product_loan mp on mp.name&#x3d;ld.product_name&#xd;&#xa;left join m_product_loan_charge mpc on mpc.product_loan_id&#x3d;mp.id&#xd;&#xa;left join m_charge mc on mc.id&#x3d;mpc.charge_id&#xd;&#xa;&#x23;where mp.id not in &#x28;11,12,13,14,15,16,17,18,19&#x29;&#xd;&#xa;&#x23;and ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;&#x23;order by 5&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,c.id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,mp.id,&#x27;,&#xd;&#xa;&#x22;disbursementData&#x22;&#x3a;&#x5b;&#x7b;&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;&#x7d;&#x5d;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;maxOutstandingLoanBalance&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x22;&#xd;&#xa;&#x7d;&#x27; else concat&#x28;&#x27;&#x22;,&#xd;&#xa;&#x22;charges&#x22;&#x3a;&#x5b;&#x27;,group_concat&#x28;&#x27;&#x7b;&#x22;chargeId&#x22;&#x3a;&#x27;,ifnull&#x28;mpc.charge_id,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;,&#x22;amount&#x22;&#x3a;&#x27;,ifnull&#x28;mc.amount,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;&#x7d;&#x27;&#x29;,&#x27;&#x5d;&#x7d;&#x27;&#x29; end &#x29;as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;,&#xd;&#xa;mp.name,&#xd;&#xa;ld.loan_external_id&#xd;&#xa;from loan_details ld&#xd;&#xa;inner join m_client c on c.account_no&#x3d;ld.client_code&#xd;&#xa;inner join m_product_loan mp on mp.name&#x3d;ld.product_name&#xd;&#xa;left join m_product_loan_charge mpc on mpc.product_loan_id&#x3d;mp.id&#xd;&#xa;left join m_charge mc on mc.id&#x3d;mpc.charge_id&#xd;&#xa;&#x23;where mp.id not in &#x28;11,12,13,14,15,16,17,18,19&#x29;&#xd;&#xa;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;&#x23;order by 5&#xd;&#xa;&#x2a;&#x2f;&#xd;&#xa;&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 40000,5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -276,7 +414,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>&#x2f;&#x2a;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,c.id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,mp.id,&#x27;,&#xd;&#xa;&#x22;disbursementData&#x22;&#x3a;&#x5b;&#x7b;&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;&#x7d;&#x5d;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,case ld.repay_freq when &#x27;M&#x27; then 2 else 1 end,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;maxOutstandingLoanBalance&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x22;&#xd;&#xa;&#x7d;&#x27; else concat&#x28;&#x27;&#x22;,&#xd;&#xa;&#x22;charges&#x22;&#x3a;&#x5b;&#x27;,group_concat&#x28;&#x27;&#x7b;&#x22;chargeId&#x22;&#x3a;&#x27;,ifnull&#x28;mpc.charge_id,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;,&#x22;amount&#x22;&#x3a;&#x27;,ifnull&#x28;mc.amount,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;&#x7d;&#x27;&#x29;,&#x27;&#x5d;&#x7d;&#x27;&#x29; end &#x29;as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;,&#xd;&#xa;mp.name,&#xd;&#xa;ld.loan_external_id&#xd;&#xa;from loan_details ld&#xd;&#xa;inner join m_client c on c.account_no&#x3d;ld.client_code&#xd;&#xa;inner join m_product_loan mp on mp.name&#x3d;ld.product_name&#xd;&#xa;left join m_product_loan_charge mpc on mpc.product_loan_id&#x3d;mp.id&#xd;&#xa;left join m_charge mc on mc.id&#x3d;mpc.charge_id&#xd;&#xa;&#x23;where mp.id not in &#x28;11,12,13,14,15,16,17,18,19&#x29;&#xd;&#xa;&#x23;and ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;&#x23;order by 5&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,c.id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,mp.id,&#x27;,&#xd;&#xa;&#x22;disbursementData&#x22;&#x3a;&#x5b;&#x7b;&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;&#x7d;&#x5d;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;maxOutstandingLoanBalance&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x22;&#xd;&#xa;&#x7d;&#x27; else concat&#x28;&#x27;&#x22;,&#xd;&#xa;&#x22;charges&#x22;&#x3a;&#x5b;&#x27;,group_concat&#x28;&#x27;&#x7b;&#x22;chargeId&#x22;&#x3a;&#x27;,ifnull&#x28;mpc.charge_id,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;,&#x22;amount&#x22;&#x3a;&#x27;,ifnull&#x28;mc.amount,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;&#x7d;&#x27;&#x29;,&#x27;&#x5d;&#x7d;&#x27;&#x29; end &#x29;as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;,&#xd;&#xa;mp.name,&#xd;&#xa;ld.loan_external_id&#xd;&#xa;from loan_details ld&#xd;&#xa;inner join m_client c on c.account_no&#x3d;ld.client_code&#xd;&#xa;inner join m_product_loan mp on mp.name&#x3d;ld.product_name&#xd;&#xa;left join m_product_loan_charge mpc on mpc.product_loan_id&#x3d;mp.id&#xd;&#xa;left join m_charge mc on mc.id&#x3d;mpc.charge_id&#xd;&#xa;&#x23;where mp.id not in &#x28;11,12,13,14,15,16,17,18,19&#x29;&#xd;&#xa;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;&#x23;order by 5&#xd;&#xa;&#x2a;&#x2f;&#xd;&#xa;&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 60000,20000</sql>
+    <sql>&#x2f;&#x2a;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,c.id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,mp.id,&#x27;,&#xd;&#xa;&#x22;disbursementData&#x22;&#x3a;&#x5b;&#x7b;&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;&#x7d;&#x5d;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,case ld.repay_freq when &#x27;M&#x27; then 2 else 1 end,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;maxOutstandingLoanBalance&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x22;&#xd;&#xa;&#x7d;&#x27; else concat&#x28;&#x27;&#x22;,&#xd;&#xa;&#x22;charges&#x22;&#x3a;&#x5b;&#x27;,group_concat&#x28;&#x27;&#x7b;&#x22;chargeId&#x22;&#x3a;&#x27;,ifnull&#x28;mpc.charge_id,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;,&#x22;amount&#x22;&#x3a;&#x27;,ifnull&#x28;mc.amount,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;&#x7d;&#x27;&#x29;,&#x27;&#x5d;&#x7d;&#x27;&#x29; end &#x29;as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;,&#xd;&#xa;mp.name,&#xd;&#xa;ld.loan_external_id&#xd;&#xa;from loan_details ld&#xd;&#xa;inner join m_client c on c.account_no&#x3d;ld.client_code&#xd;&#xa;inner join m_product_loan mp on mp.name&#x3d;ld.product_name&#xd;&#xa;left join m_product_loan_charge mpc on mpc.product_loan_id&#x3d;mp.id&#xd;&#xa;left join m_charge mc on mc.id&#x3d;mpc.charge_id&#xd;&#xa;&#x23;where mp.id not in &#x28;11,12,13,14,15,16,17,18,19&#x29;&#xd;&#xa;&#x23;and ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;&#x23;order by 5&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,c.id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,mp.id,&#x27;,&#xd;&#xa;&#x22;disbursementData&#x22;&#x3a;&#x5b;&#x7b;&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;&#x7d;&#x5d;,&#xd;&#xa;&#x22;principal&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;maxOutstandingLoanBalance&#x22;&#x3a;&#x27;,ld.disbursed_amount,&#x27;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x22;&#xd;&#xa;&#x7d;&#x27; else concat&#x28;&#x27;&#x22;,&#xd;&#xa;&#x22;charges&#x22;&#x3a;&#x5b;&#x27;,group_concat&#x28;&#x27;&#x7b;&#x22;chargeId&#x22;&#x3a;&#x27;,ifnull&#x28;mpc.charge_id,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;,&#x22;amount&#x22;&#x3a;&#x27;,ifnull&#x28;mc.amount,&#x27;&#x22;&#x22;&#x27;&#x29;,&#x27;&#x7d;&#x27;&#x29;,&#x27;&#x5d;&#x7d;&#x27;&#x29; end &#x29;as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;,&#xd;&#xa;mp.name,&#xd;&#xa;ld.loan_external_id&#xd;&#xa;from loan_details ld&#xd;&#xa;inner join m_client c on c.account_no&#x3d;ld.client_code&#xd;&#xa;inner join m_product_loan mp on mp.name&#x3d;ld.product_name&#xd;&#xa;left join m_product_loan_charge mpc on mpc.product_loan_id&#x3d;mp.id&#xd;&#xa;left join m_charge mc on mc.id&#x3d;mpc.charge_id&#xd;&#xa;&#x23;where mp.id not in &#x28;11,12,13,14,15,16,17,18,19&#x29;&#xd;&#xa;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;&#x23;order by 5&#xd;&#xa;&#x2a;&#x2f;&#xd;&#xa;&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 15000,5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -284,8 +422,111 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>253</xloc>
-      <yloc>279</yloc>
+      <xloc>103</xloc>
+      <yloc>284</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan 8</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 20000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>92</xloc>
+      <yloc>373</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan 9</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 25000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>105</xloc>
+      <yloc>473</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan REST</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url>https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>Y</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;test.log</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>932</xloc>
+      <yloc>236</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -337,6 +578,210 @@
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>271</xloc>
       <yloc>31</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan REST 10</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url>https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>Y</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;test.log</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>603</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan REST 11</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url>https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>Y</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;test.log</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>601</xloc>
+      <yloc>387</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan REST 12</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url>https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>Y</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;test.log</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>927</xloc>
+      <yloc>59</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan REST 13</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url>https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>Y</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;test.log</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>928</xloc>
+      <yloc>148</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -641,8 +1086,187 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>428</xloc>
-      <yloc>279</yloc>
+      <xloc>278</xloc>
+      <yloc>284</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan REST 8</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url>https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>Y</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;test.log</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>288</xloc>
+      <yloc>371</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan REST 9</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url>https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>Y</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;test.log</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>289</xloc>
+      <yloc>469</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan 14</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>&#xd;&#xa;select&#xd;&#xa;concat&#x28;&#x27;&#x7b;&#xd;&#xa;&#x22;clientId&#x22;&#x3a;&#x22;&#x27;,jd.client_id,&#x27;&#x22;,&#xd;&#xa;&#x22;productId&#x22;&#x3a;&#x27;,jd.product_id,&#x27;,&#x27;,&#xd;&#xa;jd.disbursement_details,&#x27;,&#xd;&#xa;&#x22;loanTermFrequency&#x22;&#x3a;&#x27;,&#x28;ld.repay_every &#x2a; ld.installments&#x29;,&#x27;,&#xd;&#xa;&#x22;loanTermFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;numberOfRepayments&#x22;&#x3a;&#x27;,ld.installments,&#x27;,&#xd;&#xa;&#x22;repaymentEvery&#x22;&#x3a;&#x27;,ld.repay_every,&#x27;,&#xd;&#xa;&#x22;repaymentFrequencyType&#x22;&#x3a;&#x27;,ld.repayment_period_frequency,&#x27;,&#xd;&#xa;&#x22;interestRatePerPeriod&#x22;&#x3a;&#x27;,ld.interest,&#x27;,&#xd;&#xa;&#x22;amortizationType&#x22;&#x3a;1,&#xd;&#xa;&#x22;interestType&#x22;&#x3a;0,&#xd;&#xa;&#x22;interestCalculationPeriodType&#x22;&#x3a;0,&#xd;&#xa;&#x22;graceOnArrearsAgeing&#x22;&#x3a;2,&#xd;&#xa;&#x22;transactionProcessingStrategyId&#x22;&#x3a;4&#x27;,&#x27;,&#xd;&#xa;&#x22;fixedEmiAmount&#x22;&#x3a;&#x22;&#x27;,case when ld.product_name in &#x28;&#x27;1 YEAR GL MAX&#x27;,&#x27;1 YEAR GL&#x27;,&#x27;1 YEAR GL MIN&#x27;,&#x27;180 DAYS GL MAX&#x27;,&#x27;180 DAYS GL&#x27;,&#x27;180 DAYS GL MIN&#x27;,&#x27;90 DAYS GL&#x27;,&#x27;90 DAYS GL MIN&#x27;,&#x27;90 DAYS GL MAX&#x27;&#x29; then &#x27;&#x27; else ld.emi2 end,&#x27;&#x22;,&#xd;&#xa;&#x22;interestChargedFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;repaymentsStartingFromDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.frp2,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;locale&#x22;&#x3a;&#x22;en&#x22;,&#xd;&#xa;&#x22;dateFormat&#x22;&#x3a;&#x22;dd MMMM yyyy&#x22;,&#xd;&#xa;&#x22;loanType&#x22;&#x3a;&#x22;individual&#x22;,&#xd;&#xa;&#x22;expectedDisbursementDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;submittedOnDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.submittedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;recalculationRestFrequencyDate&#x22;&#x3a;&#x22;&#x27;,date_format&#x28;ld.disbursedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x27;&#x29;,&#x27;&#x22;,&#xd;&#xa;&#x22;externalId&#x22;&#x3a;&#x22;&#x27;,ld.loan_external_id,&#x27;&#x22;&#x27;,&#xd;&#xa;jc.charge_details&#x29; as JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from loan_details ld&#xd;&#xa;inner join json_disb jd on jd.loan_details_id&#x3d;ld.id&#xd;&#xa;inner join json_charge jc on jc.loan_details_id&#x3d;ld.id&#xd;&#xa;&#x23;where jd.product_id in &#x28;9,12&#x29;&#xd;&#xa;&#x23;where ld.loan_external_id not in &#x28;select external_id from m_loan&#x29;&#xd;&#xa;group by ld.loan_external_id&#xd;&#xa;order by jd.client_id&#xd;&#xa;limit 70000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>737</xloc>
+      <yloc>326</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Submit Loan REST 14</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url>https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans</url>
+    <urlInField>N</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>Y</preemptive>
+    <trustStoreFile/>
+    <trustStorePassword>Encrypted </trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;test.log</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>938</xloc>
+      <yloc>327</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

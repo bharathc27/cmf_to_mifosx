@@ -127,17 +127,24 @@
     </attributes>
   </connection>
   <order>
-  <hop> <from>Table input 1</from><to>REST Client 1</to><enabled>Y</enabled> </hop>
+  <hop> <from>Table input</from><to>REST Client</to><enabled>Y</enabled> </hop>
   <hop> <from>Table input 2</from><to>REST Client 2</to><enabled>Y</enabled> </hop>
   <hop> <from>Table input 3</from><to>REST Client 3</to><enabled>Y</enabled> </hop>
   <hop> <from>Table input 4</from><to>REST Client 4</to><enabled>Y</enabled> </hop>
   <hop> <from>Table input 5</from><to>REST Client 5</to><enabled>Y</enabled> </hop>
   <hop> <from>Table input 6</from><to>REST Client 6</to><enabled>Y</enabled> </hop>
   <hop> <from>Table input 7</from><to>REST Client 7</to><enabled>Y</enabled> </hop>
-  <hop> <from>REST Client 1</from><to>Table output</to><enabled>N</enabled> </hop>
+  <hop> <from>Table input 8</from><to>REST Client 8</to><enabled>Y</enabled> </hop>
+  <hop> <from>Table input 9</from><to>REST Client 9</to><enabled>Y</enabled> </hop>
+  <hop> <from>Table input 10</from><to>REST Client 10</to><enabled>Y</enabled> </hop>
+  <hop> <from>Table input 11</from><to>REST Client 11</to><enabled>Y</enabled> </hop>
+  <hop> <from>Table input 12</from><to>REST Client 12</to><enabled>Y</enabled> </hop>
+  <hop> <from>Table input 13</from><to>REST Client 13</to><enabled>Y</enabled> </hop>
+  <hop> <from>Table input 14</from><to>REST Client 14</to><enabled>Y</enabled> </hop>
+  <hop> <from>Table input 15</from><to>REST Client 15</to><enabled>Y</enabled> </hop>
   </order>
   <step>
-    <name>REST Client 1</name>
+    <name>REST Client</name>
     <type>Rest</type>
     <description/>
     <distribute>Y</distribute>
@@ -181,7 +188,7 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>354</xloc>
+      <xloc>216</xloc>
       <yloc>40</yloc>
       <draw>Y</draw>
       </GUI>
@@ -232,8 +239,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>658</xloc>
-      <yloc>41</yloc>
+      <xloc>451</xloc>
+      <yloc>42</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -283,8 +290,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>362</xloc>
-      <yloc>127</yloc>
+      <xloc>225</xloc>
+      <yloc>156</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -334,8 +341,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>661</xloc>
-      <yloc>128</yloc>
+      <xloc>460</xloc>
+      <yloc>122</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -385,8 +392,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>360</xloc>
-      <yloc>212</yloc>
+      <xloc>232</xloc>
+      <yloc>226</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -436,8 +443,8 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>669</xloc>
-      <yloc>214</yloc>
+      <xloc>464</xloc>
+      <yloc>204</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -487,14 +494,14 @@
       </result>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>550</xloc>
-      <yloc>284</yloc>
+      <xloc>230</xloc>
+      <yloc>302</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Table input 1</name>
+    <name>Table input</name>
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
@@ -505,7 +512,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 10000</sql>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -531,7 +538,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 10000,10000</sql>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 5000,5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -539,7 +546,7 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>455</xloc>
+      <xloc>325</xloc>
       <yloc>41</yloc>
       <draw>Y</draw>
       </GUI>
@@ -557,7 +564,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 20000,10000</sql>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 15000,5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -565,8 +572,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>100</xloc>
-      <yloc>127</yloc>
+      <xloc>103</xloc>
+      <yloc>156</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -583,7 +590,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 30000,10000</sql>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 20000,5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -591,8 +598,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>447</xloc>
-      <yloc>128</yloc>
+      <xloc>323</xloc>
+      <yloc>122</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -609,7 +616,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 40000,10000</sql>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 25000,5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -617,8 +624,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>102</xloc>
-      <yloc>212</yloc>
+      <xloc>108</xloc>
+      <yloc>227</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -635,7 +642,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 50000,10000</sql>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 30000,5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -643,8 +650,8 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>455</xloc>
-      <yloc>214</yloc>
+      <xloc>333</xloc>
+      <yloc>204</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -661,7 +668,7 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 60000,10000</sql>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 35000,5000</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -669,15 +676,66 @@
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>336</xloc>
-      <yloc>284</yloc>
+      <xloc>113</xloc>
+      <yloc>301</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>Table output</name>
-    <type>TableOutput</type>
+    <name>REST Client 8</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile>C&#x3a;&#x5c;tomcat-Chai&#x5c;.keystore</trustStoreFile>
+    <trustStorePassword>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>test</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>454</xloc>
+      <yloc>286</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table input 8</name>
+    <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -687,41 +745,584 @@
            <schema_name/>
            </partitioning>
     <connection>DestinationDB</connection>
-    <schema/>
-    <table>response</table>
-    <commit>10</commit>
-    <truncate>N</truncate>
-    <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
-    <specify_fields>Y</specify_fields>
-    <partitioning_enabled>N</partitioning_enabled>
-    <partitioning_field/>
-    <partitioning_daily>N</partitioning_daily>
-    <partitioning_monthly>Y</partitioning_monthly>
-    <tablename_in_field>N</tablename_in_field>
-    <tablename_field/>
-    <tablename_in_table>Y</tablename_in_table>
-    <return_keys>N</return_keys>
-    <return_field/>
-    <fields>
-        <field>
-          <column_name>response</column_name>
-          <stream_name>result</stream_name>
-        </field>
-        <field>
-          <column_name>ext_id</column_name>
-          <stream_name>test</stream_name>
-        </field>
-    </fields>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 40000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>900</xloc>
-      <yloc>106</yloc>
+      <xloc>338</xloc>
+      <yloc>290</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>REST Client 9</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile>C&#x3a;&#x5c;tomcat-Chai&#x5c;.keystore</trustStoreFile>
+    <trustStorePassword>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>test</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>229</xloc>
+      <yloc>385</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table input 9</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 45000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>114</xloc>
+      <yloc>385</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>REST Client 10</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile>C&#x3a;&#x5c;tomcat-Chai&#x5c;.keystore</trustStoreFile>
+    <trustStorePassword>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>test</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>465</xloc>
+      <yloc>375</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table input 10</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 50000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>349</xloc>
+      <yloc>376</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>REST Client 11</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile>C&#x3a;&#x5c;tomcat-Chai&#x5c;.keystore</trustStoreFile>
+    <trustStorePassword>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>test</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>226</xloc>
+      <yloc>469</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table input 11</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 55000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>111</xloc>
+      <yloc>469</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>REST Client 12</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile>C&#x3a;&#x5c;tomcat-Chai&#x5c;.keystore</trustStoreFile>
+    <trustStorePassword>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>test</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>465</xloc>
+      <yloc>473</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table input 12</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 60000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>473</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>REST Client 13</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile>C&#x3a;&#x5c;tomcat-Chai&#x5c;.keystore</trustStoreFile>
+    <trustStorePassword>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>test</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>711</xloc>
+      <yloc>45</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table input 13</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 65000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>596</xloc>
+      <yloc>45</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>REST Client 14</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile>C&#x3a;&#x5c;tomcat-Chai&#x5c;.keystore</trustStoreFile>
+    <trustStorePassword>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>test</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>216</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table input 14</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 10000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>101</xloc>
+      <yloc>96</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>REST Client 15</name>
+    <type>Rest</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <applicationType>JSON</applicationType>
+    <method>POST</method>
+    <url/>
+    <urlInField>Y</urlInField>
+    <dynamicMethod>N</dynamicMethod>
+    <methodFieldName/>
+    <urlField>URL</urlField>
+    <bodyField>JSON</bodyField>
+    <httpLogin>mifos</httpLogin>
+    <httpPassword>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</httpPassword>
+    <proxyHost/>
+    <proxyPort/>
+    <preemptive>N</preemptive>
+    <trustStoreFile>C&#x3a;&#x5c;tomcat-Chai&#x5c;.keystore</trustStoreFile>
+    <trustStorePassword>Encrypted 2be98afc86aa7f2e4cb79ff228dc6fa8c</trustStorePassword>
+    <headers>
+      <header>
+        <field>Content-Type</field>
+        <name>Content-Type</name>
+        </header>
+      <header>
+        <field>X-Mifos-Platform-TenantId</field>
+        <name>X-Mifos-Platform-TenantId</name>
+        </header>
+      </headers>
+    <parameters>
+      </parameters>
+    <result>
+      <name>result</name>
+      <code>test</code>
+      <response_time/>
+      </result>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>722</xloc>
+      <yloc>122</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Table input 15</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>DestinationDB</connection>
+    <sql>select concat&#x28;&#x27;https&#x3a;&#x2f;&#x2f;localhost&#x2f;mifosng-provider&#x2f;api&#x2f;v1&#x2f;loans&#x2f;&#x27;,ml.id,&#x27;&#x3f;command&#x3d;approve&#x27;&#x29; URL,&#xd;&#xa;concat&#x28;&#x27;&#x7b; &#x22;locale&#x22;&#x3a; &#x22;en&#x22;, &#x22;dateFormat&#x22;&#x3a; &#x22;dd MMMM yyyy&#x22;, &#x22;approvedOnDate&#x22;&#x3a; &#x22;&#x27;,date_format&#x28;ld.approvedon_date,&#x27;&#x25;d &#x25;M &#x25;Y&#x22;,&#x22;note&#x22;&#x3a; &#x22;Approved&#x22; &#x7d;&#x27;&#x29;&#x29; JSON,&#xd;&#xa;&#x27;application&#x2f;json&#x27; as &#x27;Content-Type&#x27;,&#xd;&#xa;&#x27;default&#x27; as &#x27;X-Mifos-Platform-TenantId&#x27;&#xd;&#xa; from &#xd;&#xa;m_loan ml&#xd;&#xa;inner join loan_details ld on ld.loan_external_id&#x3d;ml.external_id&#xd;&#xa;where ml.loan_status_id&#x3d;100&#xd;&#xa;limit 70000,5000</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>593</xloc>
+      <yloc>126</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step_error_handling>
+      <error>
+        <source_step>REST Client</source_step>
+        <target_step/>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename/>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors/>
+        <max_pct_errors/>
+        <min_pct_rows/>
+      </error>
+      <error>
+        <source_step>REST Client 3</source_step>
+        <target_step/>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename/>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors/>
+        <max_pct_errors/>
+        <min_pct_rows/>
+      </error>
   </step_error_handling>
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>
